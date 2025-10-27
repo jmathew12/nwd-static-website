@@ -11,7 +11,7 @@ const Footer = () => {
         display: "flex",
         flexDirection: "row",
         width: "auto",
-        height: "160px",
+        height: "120px",
         gap: "5rem",
         backgroundColor: "#004da8",
         alignItems: "center",
@@ -19,7 +19,6 @@ const Footer = () => {
         flexWrap: "wrap", // makes it responsive
       }}
     >
-      {/* Navigation and Contact Section */}
       <div
         style={{
           display: "flex",
@@ -62,7 +61,6 @@ const Footer = () => {
         </ul>
       </div>
 
-      {/* Logo and Candid Seal Section */}
       <div
         style={{
           display: "flex",
@@ -74,6 +72,7 @@ const Footer = () => {
           flexWrap: "wrap",
         }}
       >
+        {/* Local Candid Seal of Transparency */}
         <a
           href="https://app.candid.org/profile/16346708/next-wave-dev-33-3742956"
           target="_blank"
@@ -92,7 +91,7 @@ const Footer = () => {
             }}
           />
         </a>
-        
+
         {/* Next Wave Dev Logo */}
         <Link
           to={"https://northseattle.edu/"}
@@ -106,7 +105,6 @@ const Footer = () => {
           />
         </Link>
 
-        {/* ✅ Local Candid Seal of Transparency */}
 
       </div>
     </div>

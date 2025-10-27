@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FooterLink } from "./microComponents/footer/footerLink";
 import { Separator } from "./microComponents/footer/separator";
 import NEXTWAVEDEV from "../images/nextwavedev.png";
+import CANDID_SEAL from "../images/candid-transparency-logo.svg"; // ✅ Local Seal
 
 const Footer = () => {
   return (
@@ -10,19 +11,23 @@ const Footer = () => {
         display: "flex",
         flexDirection: "row",
         width: "auto",
-        height: "120px",
+        height: "160px",
         gap: "5rem",
         backgroundColor: "#004da8",
         alignItems: "center",
         justifyContent: "space-evenly",
+        flexWrap: "wrap", // makes it responsive
       }}
     >
+      {/* Navigation and Contact Section */}
       <div
         style={{
           display: "flex",
           flexDirection: "row",
           width: "auto",
           gap: "5rem",
+          flexWrap: "wrap",
+          justifyContent: "center",
         }}
       >
         <ul style={{ ...footerList }}>
@@ -34,23 +39,14 @@ const Footer = () => {
               display: "flex",
               flexDirection: "row",
               gap: "1rem",
+              flexWrap: "wrap",
             }}
           >
-            <li>
-              <FooterLink name="Home" />
-            </li>
-            <li>
-              <FooterLink name="Contact" />
-            </li>
-            <li>
-              <FooterLink name="About" />
-            </li>
-            <li>
-              <FooterLink name="Developers" />
-            </li>
-            <li>
-              <FooterLink name="Portfolio" />
-            </li>
+            <li><FooterLink name="Home" /></li>
+            <li><FooterLink name="Contact" /></li>
+            <li><FooterLink name="About" /></li>
+            <li><FooterLink name="Developers" /></li>
+            <li><FooterLink name="Portfolio" /></li>
           </ul>
         </ul>
 
@@ -66,25 +62,52 @@ const Footer = () => {
         </ul>
       </div>
 
+      {/* Logo and Candid Seal Section */}
       <div
         style={{
           display: "flex",
           flexDirection: "row",
           width: "auto",
-          gap: "5rem",
+          gap: "2rem",
           alignItems: "center",
+          justifyContent: "center",
+          flexWrap: "wrap",
         }}
       >
-
-        <Link to={"https://northseattle.edu/"}>
+        <a
+          href="https://app.candid.org/profile/16346708/next-wave-dev-33-3742956"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
-            src={NEXTWAVEDEV}
-            alt="next wave dev logo"
+            src={CANDID_SEAL}
+            alt="Candid Seal of Transparency"
             style={{
-              width: "6rem",
+              height: "64px",
+              width: "auto",
+              display: "block",
+              borderRadius: "4px",
+              backgroundColor: "white",
+              padding: "4px",
             }}
           />
+        </a>
+        
+        {/* Next Wave Dev Logo */}
+        <Link
+          to={"https://northseattle.edu/"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src={NEXTWAVEDEV}
+            alt="Next Wave Dev logo"
+            style={{ width: "6rem" }}
+          />
         </Link>
+
+        {/* ✅ Local Candid Seal of Transparency */}
+
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FooterLink } from "./microComponents/footer/footerLink";
 import { Separator } from "./microComponents/footer/separator";
 import NEXTWAVEDEV from "../images/nextwavedev.png";
-import CANDID_SEAL from "../images/candid-transparency-logo.svg"; // ✅ Local Seal
+import CANDID_SEAL from "../images/candid-transparency-logo.svg"; 
 
 const Footer = () => {
   return (
@@ -16,7 +16,7 @@ const Footer = () => {
         backgroundColor: "#004da8",
         alignItems: "center",
         justifyContent: "space-evenly",
-        flexWrap: "wrap", // makes it responsive
+        flexWrap: "wrap", 
       }}
     >
       <div

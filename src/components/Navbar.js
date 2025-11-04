@@ -23,6 +23,8 @@ const Navbar =()=>{
             <Item name={"Developers"} />
             <WhiteSpacing />
             <Item name={"Portfolio"} />
+            <WhiteSpacing />
+            <Item name="Shop" to="https://bonfire.com/store/next-wave-dev-store/" external/>
         </div>
     )
 }

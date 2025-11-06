@@ -5,8 +5,6 @@ on:
     types: [opened, assigned, closed, reopened]
   pull_request:
     types: [opened, ready_for_review, converted_to_draft, closed]
-  pull_request_review:
-    types: [submitted]
 
 jobs:
   sync-status:
@@ -32,8 +30,7 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
           ACTION: ${{ github.event.action }}
           IS_DRAFT: ${{ github.event.pull_request.draft }}
-          REVIEW_STATE: ${{ github.event.review.state }}
-          REVIEW_CONCLUSION: ${{ github.event.review.state }}
+          PR_MERGED: ${{ github.event.pull_request.merged }}
         run: |
           set -e
           desired=""
@@ -41,44 +38,39 @@ jobs:
           # =======================================================
           # Item added to project (handled via "opened" events)
           #   - Issue opened → Backlog
-          #   - PR opened → In Review or In Progress (draft)
+          #   - Issue assigned → In Progress
+          #   - Issue closed → Done
+          #   - Issue reopened → Ready
           # =======================================================
           case "$EVENT_NAME" in
             issues)
               case "$ACTION" in
-                opened) desired="Backlog" ;;                # Item added to project → Backlog
-                assigned) desired="In Progress" ;;          # When assigned → In Progress
-                closed) desired="Done" ;;                   # Item closed → Done
-                reopened) desired="Ready" ;;                # Item reopened → Ready
+                opened)   desired="Backlog" ;;
+                assigned) desired="In Progress" ;;
+                closed)   desired="Done" ;;
+                reopened) desired="Ready" ;;
               esac
               ;;
             pull_request)
               case "$ACTION" in
                 opened)
                   if [ "$IS_DRAFT" = "true" ]; then
-                    desired="In Progress"                   # Draft PR → In Progress
+                    desired="In Progress"                 # Draft PR → In Progress
                   else
-                    desired="In Review"                     # PR opened → In Review
+                    desired="In Review"                   # PR opened → In Review
                   fi
                   ;;
-                ready_for_review) desired="In Review" ;;     # PR ready → In Review
-                converted_to_draft) desired="In Progress" ;; # PR converted back to draft → In Progress
-                closed) desired="Done" ;;                    # Pull request merged/closed → Done
+                ready_for_review)   desired="In Review" ;; # PR ready → In Review
+                converted_to_draft) desired="In Progress" ;; # Back to draft → In Progress
+                closed)
+                  # Do NOT set status on close unless merged.
+                  if [ "$PR_MERGED" = "true" ]; then
+                    desired="Done"                        # Only on merge → Done
+                  else
+                    desired=""                            # Closed w/o merge → no change
+                  fi
+                  ;;
               esac
-              ;;
-            pull_request_review)
-          
-              # =======================================================
-              # Code changes requested
-              #   - When reviewer requests changes → Blocked
-              # Code review approved
-              #   - When review approved → Done
-              # =======================================================
-              if [ "$REVIEW_STATE" = "changes_requested" ]; then
-                desired="Blocked"
-              elif [ "$REVIEW_STATE" = "approved" ]; then
-                desired="Done"
-              fi
               ;;
           esac
 
@@ -93,6 +85,7 @@ jobs:
 
       # ---------------------------------------
       # Update Project Status field via GraphQL
+      # (robust: resolve IDs and send JSON variables)
       # ---------------------------------------
       - name: Set Status in Project
         if: ${{ steps.decide.outputs.desired != '' }}
@@ -112,25 +105,36 @@ jobs:
               organization(login:$org){
                 projectV2(number:$number){
                   id
-                  fields(first:50){
+                  fields(first:100){
                     nodes{
+                      id
+                      name
+                      dataType
                       ... on ProjectV2SingleSelectField {
-                        id
-                        name
                         options { id name }
                       }
                     }
                   }
                 }
               }
-            }' -F org=$ORG -F number=$PROJECT_NUMBER > project.json
+            }' -F org="$ORG" -F number="$PROJECT_NUMBER" > project.json
 
           PROJECT_ID=$(jq -r '.data.organization.projectV2.id' project.json)
           STATUS_FIELD_ID=$(jq -r '.data.organization.projectV2.fields.nodes[] | select(.name=="Status") | .id' project.json)
           OPTION_ID=$(jq -r --arg n "$DESIRED" '.data.organization.projectV2.fields.nodes[] | select(.name=="Status") | .options[] | select(.name==$n) | .id' project.json)
 
+          # Guards: ensure we have string-like IDs (not empty/numeric)
+          req() { test -n "$1" && [[ ! "$1" =~ ^[0-9]+$ ]] || { echo "::error ::Missing or numeric ID for $2"; cat project.json; exit 1; }; }
+          req "$PROJECT_ID" "PROJECT_ID"
+          req "$STATUS_FIELD_ID" "STATUS_FIELD_ID"
+          req "$OPTION_ID" "OPTION_ID for '$DESIRED'"
+
           # Determine content node id (issue or PR)
           CONTENT_ID="${PR_NODE_ID:-$ISSUE_NODE_ID}"
+          if [ -z "$CONTENT_ID" ]; then
+            echo "::warning ::No content node id for this event; nothing to update."
+            exit 0
+          fi
 
           # Try to find an existing item (first 100)
           gh api graphql -f query='
@@ -145,36 +149,44 @@ jobs:
                   }
                 }
               }
-            }' -F org=$ORG -F number=$PROJECT_NUMBER > items.json
+            }' -F org="$ORG" -F number="$PROJECT_NUMBER" > items.json
 
-          ITEM_ID=$(jq -r --arg cid "$CONTENT_ID" '
-            .data.organization.projectV2.items.nodes[]
-            | select(.content.id==$cid) | .id' items.json)
+          ITEM_ID=$(jq -r --arg cid "$CONTENT_ID" \
+            '.data.organization.projectV2.items.nodes[] | select(.content.id==$cid) | .id' items.json)
 
           # Add if missing
           if [ -z "$ITEM_ID" ] || [ "$ITEM_ID" = "null" ]; then
-            gh api graphql -f query='
-              mutation($project:ID!, $content:ID!){
-                addProjectV2ItemById(input:{projectId:$project, contentId:$content}) {
-                  item { id }
-                }
-              }' -F project=$PROJECT_ID -F content=$CONTENT_ID > add.json
+            VARS=$(jq -nc --arg project "$PROJECT_ID" --arg content "$CONTENT_ID" \
+              '{project:$project, content:$content}')
+            gh api graphql \
+              -f query='
+                mutation($project:ID!, $content:ID!){
+                  addProjectV2ItemById(input:{projectId:$project, contentId:$content}) {
+                    item { id }
+                  }
+                }' \
+              -f variables="$VARS" > add.json
             ITEM_ID=$(jq -r '.data.addProjectV2ItemById.item.id' add.json)
           fi
 
-          # Update Status
-          gh api graphql -f query='
-            mutation($project:ID!, $item:ID!, $field:ID!, $option:String!){
-              updateProjectV2ItemFieldValue(input:{
-                projectId:$project,
-                itemId:$item,
-                fieldId:$field,
-                value:{ singleSelectOptionId:$option }
-              }) { clientMutationId }
-            }' \
-            -F project=$PROJECT_ID \
-            -F item=$ITEM_ID \
-            -F field=$STATUS_FIELD_ID \
-            -F option=$OPTION_ID
+          # Update Status (JSON variables to keep strings as strings)
+          VARS=$(jq -nc \
+            --arg project "$PROJECT_ID" \
+            --arg item    "$ITEM_ID" \
+            --arg field   "$STATUS_FIELD_ID" \
+            --arg option  "$OPTION_ID" \
+            '{project:$project, item:$item, field:$field, option:$option}')
+
+          gh api graphql \
+            -f query='
+              mutation($project:ID!, $item:ID!, $field:ID!, $option:String!) {
+                updateProjectV2ItemFieldValue(input:{
+                  projectId:$project,
+                  itemId:$item,
+                  fieldId:$field,
+                  value:{ singleSelectOptionId:$option }
+                }) { projectV2Item { id } }
+              }' \
+            -f variables="$VARS"
 
           echo "Set Status => $DESIRED"

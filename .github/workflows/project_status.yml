@@ -168,8 +168,10 @@ jobs:
 
           # Add if missing
           if [ -z "$ITEM_ID" ] || [ "$ITEM_ID" = "null" ]; then
-            VARS=$(jq -nc --arg project "$PROJECT_ID" --arg content "$CONTENT_ID" \
-              '{project:$project, content:$content}')
+            VARS=$(jq -nc \
+              --arg project "$PROJECT_ID" \
+              --arg content "$CONTENT_ID" \
+              '{"project": $project, "content": $content}')
             gh api graphql \
               -f query='
                 mutation($project:ID!, $content:ID!){
@@ -190,7 +192,7 @@ jobs:
             --arg item    "$ITEM_ID" \
             --arg field   "$STATUS_FIELD_ID" \
             --arg option  "$OPTION_ID" \
-            '{project:$project, item:$item, field:$field, option:$option}')
+            '{"project": $project, "item": $item, "field": $field, "option": $option}')
 
           gh api graphql \
             -f query='

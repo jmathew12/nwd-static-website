@@ -87,9 +87,6 @@ function Main() {
       </div>
       <div className="contact-div">
         <div className="contact-div__contact-wrapper">
-          <p className="contact-div__p-title">
-            Looking for Help on Your Next Big Project?
-          </p>
           <FormComponent />
         </div>
         <iframe

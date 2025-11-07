@@ -175,9 +175,16 @@ jobs:
             echo "Attempting to ADD Item with VARS: $VARS"
             # ------------------------
 
-            PAYLOAD="{\"query\":\"mutation(\$project:ID!, \$content:ID!){ addProjectV2ItemById(input:{projectId:\$project, contentId:\$content}) { item { id } } }\",\"variables\":$VARS}"
+            # 1. Define the mutation query in a shell variable
+            QUERY='mutation($project:ID!, $content:ID!){
+              addProjectV2ItemById(input:{projectId:$project, contentId:$content}) {
+                item { id }
+              }
+            }'
           
-            gh api graphql --method POST -H 'Content-Type: application/json' <<< "$PAYLOAD" > add.json
+            # 2. Use gh api graphql, passing the query variable and piping VARS to stdin
+            # We use the standard JSON payload structure (query + variables)
+            echo "{\"query\":\"$QUERY\", \"variables\":$VARS}" | gh api graphql --method POST -H 'Content-Type: application/json' > add.json
           
             ITEM_ID=$(jq -r '.data.addProjectV2ItemById.item.id' add.json)
             if [ -z "$ITEM_ID" ] || [ "$ITEM_ID" = "null" ]; then
@@ -192,8 +199,18 @@ jobs:
           echo "Attempting to UPDATE Status with VARS: $VARS"
           # ------------------------
 
-          PAYLOAD="{\"query\":\"mutation(\$project:ID!, \$item:ID!, \$field:ID!, \$option:String!) { updateProjectV2ItemFieldValue(input:{ projectId:\$project, itemId:\$item, fieldId:\$field, value:{ singleSelectOptionId:\$option } }) { projectV2Item { id } } }\",\"variables\":$VARS}"
-
-          gh api graphql --method POST -H 'Content-Type: application/json' <<< "$PAYLOAD"
+          # 1. Define the mutation query in a shell variable
+          QUERY='mutation($project:ID!, $item:ID!, $field:ID!, $option:String!) {
+            updateProjectV2ItemFieldValue(input:{
+              projectId:$project,
+              itemId:$item,
+              fieldId:$field,
+              value:{ singleSelectOptionId:$option }
+            }) { projectV2Item { id } }
+          }'
+          
+          # 2. Use gh api graphql, passing the query variable and piping VARS to stdin
+          # We use the standard JSON payload structure (query + variables)
+          echo "{\"query\":\"$QUERY\", \"variables\":$VARS}" | gh api graphql --method POST -H 'Content-Type: application/json'
 
           echo "Set Status => $DESIRED"

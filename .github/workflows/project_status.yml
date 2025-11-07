@@ -175,14 +175,10 @@ jobs:
             echo "Attempting to ADD Item with VARS: $VARS"
             # ------------------------
 
-            gh api graphql \
-              -f query='
-                mutation($project:ID!, $content:ID!){
-                  addProjectV2ItemById(input:{projectId:$project, contentId:$content}) {
-                    item { id }
-                  }
-                }' \
-              -f variables="$VARS" > add.json
+            PAYLOAD="{\"query\":\"mutation(\$project:ID!, \$content:ID!){ addProjectV2ItemById(input:{projectId:\$project, contentId:\$content}) { item { id } } }\",\"variables\":$VARS}"
+          
+            gh api graphql --method POST -H 'Content-Type: application/json' -d "$PAYLOAD" > add.json
+          
             ITEM_ID=$(jq -r '.data.addProjectV2ItemById.item.id' add.json)
             if [ -z "$ITEM_ID" ] || [ "$ITEM_ID" = "null" ]; then
               echo "::error ::Failed to add item to project."; sed -n '1,120p' add.json; exit 1;
@@ -196,16 +192,8 @@ jobs:
           echo "Attempting to UPDATE Status with VARS: $VARS"
           # ------------------------
 
-          gh api graphql \
-            -f query='
-              mutation($project:ID!, $item:ID!, $field:ID!, $option:String!) {
-                updateProjectV2ItemFieldValue(input:{
-                  projectId:$project,
-                  itemId:$item,
-                  fieldId:$field,
-                  value:{ singleSelectOptionId:$option }
-                }) { projectV2Item { id } }
-              }' \
-            -f variables="$VARS"
+          PAYLOAD="{\"query\":\"mutation(\$project:ID!, \$item:ID!, \$field:ID!, \$option:String!) { updateProjectV2ItemFieldValue(input:{ projectId:\$project, itemId:\$item, fieldId:\$field, value:{ singleSelectOptionId:\$option } }) { projectV2Item { id } } }\",\"variables\":$VARS}"
+
+          gh api graphql --method POST -H 'Content-Type: application/json' -d "$PAYLOAD"
 
           echo "Set Status => $DESIRED"

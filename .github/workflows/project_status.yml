@@ -105,23 +105,24 @@ jobs:
               organization(login:$org){
                 projectV2(number:$number){
                   id
-                  fields(first:100){
-                    nodes{
-                      id
-                      name
-                      dataType
-                      ... on ProjectV2SingleSelectField {
-                        options { id name }
+                    fields(first:100){
+                      nodes{
+                        __typename
+                          ... on ProjectV2SingleSelectField {
+                            id
+                            name
+                            options { id name }
+                          }
+                        }
                       }
                     }
                   }
-                }
-              }
-            }' -F org="$ORG" -F number="$PROJECT_NUMBER" > project.json
-
-          PROJECT_ID=$(jq -r '.data.organization.projectV2.id' project.json)
-          STATUS_FIELD_ID=$(jq -r '.data.organization.projectV2.fields.nodes[] | select(.name=="Status") | .id' project.json)
-          OPTION_ID=$(jq -r --arg n "$DESIRED" '.data.organization.projectV2.fields.nodes[] | select(.name=="Status") | .options[] | select(.name==$n) | .id' project.json)
+                }' -F org="$ORG" -F number="$PROJECT_NUMBER" > project.json
+        
+              PROJECT_ID=$(jq -r '.data.organization.projectV2.id' project.json)
+              STATUS_FIELD_ID=$(jq -r '.data.organization.projectV2.fields.nodes[] | select(.name=="Status") | .id' project.json)
+              OPTION_ID=$(jq -r --arg n "$DESIRED" \
+                '.data.organization.projectV2.fields.nodes[] | select(.name=="Status") | .options[] | select(.name==$n) | .id' project.json)
 
           # Guards: ensure we have string-like IDs (not empty/numeric)
           req() { test -n "$1" && [[ ! "$1" =~ ^[0-9]+$ ]] || { echo "::error ::Missing or numeric ID for $2"; cat project.json; exit 1; }; }

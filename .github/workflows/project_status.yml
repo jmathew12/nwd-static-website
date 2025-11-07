@@ -132,10 +132,21 @@ jobs:
 
           # Determine content node id (issue or PR)
           CONTENT_ID="${PR_NODE_ID:-$ISSUE_NODE_ID}"
-          if [ -z "$CONTENT_ID" ]; then
-            echo "::warning ::No content node id for this event; nothing to update."
-            exit 0
-          fi
+          
+          # Guards: ensure we have string-like IDs (not empty/numeric)
+          req() { test -n "$1" && [[ ! "$1" =~ ^[0-9]+$ ]] || {
+            echo "::error ::Missing or numeric ID for $2"; sed -n '1,200p' project.json; exit 1;
+          }; }
+          req "$PROJECT_ID" "PROJECT_ID"
+          req "$STATUS_FIELD_ID" "STATUS_FIELD_ID"
+          req "$OPTION_ID" "OPTION_ID for '$DESIRED'"
+          req "$CONTENT_ID" "CONTENT_ID (issue/PR node_id)"
+          
+          echo "Debug IDs:"
+          echo "  PROJECT_ID  = ${PROJECT_ID:0:8}..."
+          echo "  CONTENT_ID  = ${CONTENT_ID:0:8}..."
+          echo "  STATUS_FIELD= ${STATUS_FIELD_ID:0:8}..."
+          echo "  OPTION_ID   = ${OPTION_ID:0:8}..."
 
           # Try to find an existing item (first 100)
           gh api graphql -f query='
@@ -168,9 +179,12 @@ jobs:
                 }' \
               -f variables="$VARS" > add.json
             ITEM_ID=$(jq -r '.data.addProjectV2ItemById.item.id' add.json)
+            if [ -z "$ITEM_ID" ] || [ "$ITEM_ID" = "null" ]; then
+              echo "::error ::Failed to add item to project."; sed -n '1,120p' add.json; exit 1;
+            fi
           fi
 
-          # Update Status (JSON variables to keep strings as strings)
+          # Update Status (JSON variables)
           VARS=$(jq -nc \
             --arg project "$PROJECT_ID" \
             --arg item    "$ITEM_ID" \

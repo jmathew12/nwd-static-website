@@ -168,10 +168,13 @@ jobs:
 
           # Add if missing
           if [ -z "$ITEM_ID" ] || [ "$ITEM_ID" = "null" ]; then
-            VARS=$(jq -nc \
-              --arg project "$PROJECT_ID" \
-              --arg content "$CONTENT_ID" \
-              '{"project": $project, "content": $content}')
+            # FIX: Manually construct the JSON variable string with quotes
+            VARS="{\"project\":\"$PROJECT_ID\", \"content\":\"$CONTENT_ID\"}"
+          
+            # --- DEBUG ADDITION 1 ---
+            echo "Attempting to ADD Item with VARS: $VARS"
+            # ------------------------
+
             gh api graphql \
               -f query='
                 mutation($project:ID!, $content:ID!){
@@ -187,12 +190,11 @@ jobs:
           fi
 
           # Update Status (JSON variables)
-          VARS=$(jq -nc \
-            --arg project "$PROJECT_ID" \
-            --arg item    "$ITEM_ID" \
-            --arg field   "$STATUS_FIELD_ID" \
-            --arg option  "$OPTION_ID" \
-            '{"project": $project, "item": $item, "field": $field, "option": $option}')
+          VARS="{\"project\":\"$PROJECT_ID\", \"item\":\"$ITEM_ID\", \"field\":\"$STATUS_FIELD_ID\", \"option\":\"$OPTION_ID\"}"
+
+          # --- DEBUG ADDITION 2 ---
+          echo "Attempting to UPDATE Status with VARS: $VARS"
+          # ------------------------
 
           gh api graphql \
             -f query='

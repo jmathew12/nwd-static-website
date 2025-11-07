@@ -105,19 +105,19 @@ jobs:
               organization(login:$org){
                 projectV2(number:$number){
                   id
-                    fields(first:100){
-                      nodes{
-                        __typename
-                          ... on ProjectV2SingleSelectField {
-                            id
-                            name
-                            options { id name }
-                          }
-                        }
+                  fields(first:100){
+                    nodes{
+                      __typename
+                      ... on ProjectV2SingleSelectField {
+                        id
+                        name
+                        options { id name }
                       }
                     }
                   }
-                }' -F org="$ORG" -F number="$PROJECT_NUMBER" > project.json
+                }
+              }
+            }' -F org="$ORG" -F number="$PROJECT_NUMBER" > project.json
         
               PROJECT_ID=$(jq -r '.data.organization.projectV2.id' project.json)
               STATUS_FIELD_ID=$(jq -r '.data.organization.projectV2.fields.nodes[] | select(.name=="Status") | .id' project.json)

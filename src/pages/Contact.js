@@ -16,21 +16,12 @@ function Contact() {
         <div
           style={{
             marginTop: "10vh",
-            marginBottom: "10vh",
+            marginBottom: "30vh",
             marginLeft: "2rem",
             marginRight: "2rem",
             height: "100%",
           }}
         >
-          <div
-            style={{
-              fontSize: "48px",
-              marginBottom: "2rem",
-              fontWeight: 600,
-            }}
-          >
-            Contact us
-          </div>
           <div
             style={{
               ...flexParent,

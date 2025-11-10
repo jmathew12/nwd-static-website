@@ -41,4 +41,4 @@ Runs the app in the development mode. Your site will automatically open in your 
 ```bash
 npm start
 ```
-### View this site at [SeattleColleges.github.io](https://seattlecolleges.github.io/)
+### View this site at [nwd-static-website.pages.dev/](https://nwd-static-website.pages.dev/)

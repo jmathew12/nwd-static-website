@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import belindas from '../images/belindasmobile.png';
-import pelletier from '../images/pelletier.png';
+import belindas from "../images/belindasmobile.png";
+import pelletier from "../images/pelletier.png";
 import DeveloperThumbnail from "../components/DeveloperThumbnail";
 import studentData from "../students.json";
 import { Helmet } from "react-helmet";
@@ -25,11 +25,12 @@ function Main() {
         <div className="hero__wrapper">
           <div className="hero">
             <div className="hero__text">
-              <h1 className="hero__text__heading">
-                Next Wave Dev
-              </h1>
+              <h1 className="hero__text__heading">Next Wave Dev</h1>
               <p className="hero__text__subheading">
-              Bridging the gap between classroom learning and career success, we equip students and recent graduates with the skills, mentorship, and real-world experience needed to deliver high-quality tech solutions.
+                Bridging the gap between classroom learning and career success,
+                we equip students and recent graduates with the skills,
+                mentorship, and real-world experience needed to deliver
+                high-quality tech solutions.
               </p>
             </div>
           </div>
@@ -82,7 +83,8 @@ function Main() {
           </Link>
         </div>
         <p className="student-prev__quote">
-          "This was the best investment I could have made due to the confidence and experience gained through the program." - Nick Ramirez
+          "This was the best investment I could have made due to the confidence
+          and experience gained through the program." - Nick Ramirez
         </p>
       </div>
       <div className="contact-div">
@@ -90,7 +92,7 @@ function Main() {
           <FormComponent />
         </div>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10741.007374849207!2d-122.3326717!3d47.6989479!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490140175955555%3A0x59c4d51ad68ba97!2sNorth%20Seattle%20College!5e0!3m2!1spt-PT!2sus!4v1716602425904!5m2!1spt-PT!2sus"
+          src="https://maps.google.com/maps?q=12356+NORTHUP+WAY+STE+E,+BELLEVUE,+WA,+98005-5176,+UNITED+STATES&t=&z=13&ie=UTF8&iwloc=&output=embed"
           height="400"
           allowFullScreen=""
           loading="lazy"

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FooterLink } from "./microComponents/footer/footerLink";
 import { Separator } from "./microComponents/footer/separator";
 import NEXTWAVEDEV from "../images/nextwavedev.png";
-import CANDID_SEAL from "../images/candid-transparency-logo.svg"; 
+import CANDID_SEAL from "../images/candid-transparency-logo.svg";
 
 const Footer = () => {
   return (
@@ -16,7 +16,7 @@ const Footer = () => {
         backgroundColor: "#004da8",
         alignItems: "center",
         justifyContent: "space-evenly",
-        flexWrap: "wrap", 
+        flexWrap: "wrap",
       }}
     >
       <div
@@ -41,11 +41,21 @@ const Footer = () => {
               flexWrap: "wrap",
             }}
           >
-            <li><FooterLink name="Home" /></li>
-            <li><FooterLink name="Contact" /></li>
-            <li><FooterLink name="About" /></li>
-            <li><FooterLink name="Developers" /></li>
-            <li><FooterLink name="Portfolio" /></li>
+            <li>
+              <FooterLink name="Home" />
+            </li>
+            <li>
+              <FooterLink name="Contact" />
+            </li>
+            <li>
+              <FooterLink name="About" />
+            </li>
+            <li>
+              <FooterLink name="Developers" />
+            </li>
+            <li>
+              <FooterLink name="Portfolio" />
+            </li>
           </ul>
         </ul>
 
@@ -94,9 +104,9 @@ const Footer = () => {
 
         {/* Next Wave Dev Logo */}
         <Link
-          to={"https://northseattle.edu/"}
-          target="_blank"
-          rel="noopener noreferrer"
+          to={"/"}
+          // target="_blank"
+          // rel="noopener noreferrer"
         >
           <img
             src={NEXTWAVEDEV}
@@ -104,8 +114,6 @@ const Footer = () => {
             style={{ width: "6rem" }}
           />
         </Link>
-
-
       </div>
     </div>
   );

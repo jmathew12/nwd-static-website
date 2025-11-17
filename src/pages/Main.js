@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import belindas from '../images/belindasmobile.png';
-import pelletier from '../images/pelletier.png';
+import belindas from "../images/belindasmobile.png";
+import pelletier from "../images/pelletier.png";
 import DeveloperThumbnail from "../components/DeveloperThumbnail";
 import studentData from "../students.json";
 import { Helmet } from "react-helmet";
@@ -25,11 +25,12 @@ function Main() {
         <div className="hero__wrapper">
           <div className="hero">
             <div className="hero__text">
-              <h1 className="hero__text__heading">
-                Next Wave Dev
-              </h1>
+              <h1 className="hero__text__heading">Next Wave Dev</h1>
               <p className="hero__text__subheading">
-              Bridging the gap between classroom learning and career success, we equip students and recent graduates with the skills, mentorship, and real-world experience needed to deliver high-quality tech solutions.
+                Bridging the gap between classroom learning and career success,
+                we equip students and recent graduates with the skills,
+                mentorship, and real-world experience needed to deliver
+                high-quality tech solutions.
               </p>
             </div>
           </div>
@@ -82,7 +83,8 @@ function Main() {
           </Link>
         </div>
         <p className="student-prev__quote">
-          "This was the best investment I could have made due to the confidence and experience gained through the program." - Nick Ramirez
+          "This was the best investment I could have made due to the confidence
+          and experience gained through the program." - Nick Ramirez
         </p>
       </div>
       <div className="contact-div">

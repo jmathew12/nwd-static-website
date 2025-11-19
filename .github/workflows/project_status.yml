@@ -93,7 +93,7 @@ jobs:
         if: ${{ steps.decide.outputs.desired != '' }}
         env:
           GH_TOKEN: ${{ steps.app.outputs.token }}
-          ORG: SeattleColleges
+          ORG: next-wave-dev-org
           PROJECT_NUMBER: 6
           DESIRED: ${{ steps.decide.outputs.desired }}
           ISSUE_NODE_ID: ${{ github.event.issue.node_id }}

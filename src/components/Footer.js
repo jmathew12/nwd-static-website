@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FooterLink } from "./microComponents/footer/footerLink";
 import { Separator } from "./microComponents/footer/separator";
 import NEXTWAVEDEV from "../images/nextwavedev.png";
-import CANDID_SEAL from "../images/candid-transparency-logo.svg"; 
+import CANDID_SEAL from "../images/candid-transparency-logo.svg";
 
 const Footer = () => {
   return (
@@ -10,13 +10,15 @@ const Footer = () => {
       style={{
         display: "flex",
         flexDirection: "row",
-        width: "auto",
-        height: "120px",
+        width: "100%",
+        minHeight: "120px",
         gap: "5rem",
         backgroundColor: "#004da8",
         alignItems: "center",
         justifyContent: "space-evenly",
         flexWrap: "wrap", 
+        padding: "1rem 2rem",
+        boxSizing: "border-box"
       }}
     >
       <div
@@ -26,7 +28,8 @@ const Footer = () => {
           width: "auto",
           gap: "5rem",
           flexWrap: "wrap",
-          justifyContent: "center",
+          justifyContent: "flex-start", // maintain original left alignment
+          alignItems: "center"
         }}
       >
         <ul style={{ ...footerList }}>
@@ -39,6 +42,7 @@ const Footer = () => {
               flexDirection: "row",
               gap: "1rem",
               flexWrap: "wrap",
+              justifyContent: "flex-start" // maintain left alignment
             }}
           >
             <li><FooterLink name="Home" /></li>
@@ -76,11 +80,10 @@ const Footer = () => {
           width: "auto",
           gap: "2rem",
           alignItems: "center",
-          justifyContent: "center",
-          flexWrap: "wrap",
+          justifyContent: "flex-end", // maintain original right alignment
+          flexWrap: "wrap"
         }}
       >
-        {/* Local Candid Seal of Transparency */}
         <a
           href="https://app.candid.org/profile/16346708/next-wave-dev-33-3742956"
           target="_blank"
@@ -100,7 +103,6 @@ const Footer = () => {
           />
         </a>
 
-        {/* Next Wave Dev Logo */}
         <Link
           to={"https://northseattle.edu/"}
           target="_blank"
@@ -109,11 +111,9 @@ const Footer = () => {
           <img
             src={NEXTWAVEDEV}
             alt="Next Wave Dev logo"
-            style={{ width: "6rem" }}
+            style={{ width: "6rem", height: "auto" }}
           />
         </Link>
-
-
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { FooterLink } from "./microComponents/footer/footerLink";
 import { Separator } from "./microComponents/footer/separator";
 import NEXTWAVEDEV from "../images/nextwavedev.png";
 import CANDID_SEAL from "../images/candid-transparency-logo.svg";
+import LINKEDIN_ICON from "../images/linkedin_logo.png";
 
 const Footer = () => {
   return (
@@ -41,21 +42,19 @@ const Footer = () => {
               flexWrap: "wrap",
             }}
           >
-            <li>
-              <FooterLink name="Home" />
-            </li>
-            <li>
-              <FooterLink name="Contact" />
-            </li>
-            <li>
-              <FooterLink name="About" />
-            </li>
-            <li>
-              <FooterLink name="Developers" />
-            </li>
-            <li>
-              <FooterLink name="Portfolio" />
-            </li>
+            <li><FooterLink name="Home" /></li>
+            <li><FooterLink name="Contact" /></li>
+            <li><FooterLink name="About" /></li>
+            <li><FooterLink name="Developers" /></li>
+            <li><FooterLink name="Portfolio" /></li>          
+            <a
+              href="https://bonfire.com/store/next-wave-dev-store"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              Shop
+            </a>
           </ul>
         </ul>
 
@@ -82,6 +81,18 @@ const Footer = () => {
           flexWrap: "wrap",
         }}
       >
+        {/* LinkedIn Icon */}
+        <a
+          href="https://www.linkedin.com/company/next-wave-dev/"
+          target="_blank"
+        >
+          <img
+            src={LINKEDIN_ICON}
+            alt="LinkedIn Icon"
+            style={{ width: "64px", height: "64px" }}
+          />
+        </a>
+
         {/* Local Candid Seal of Transparency */}
         <a
           href="https://app.candid.org/profile/16346708/next-wave-dev-33-3742956"

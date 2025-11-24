@@ -1,66 +1,57 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NSCADLOGO from "../images/nextwavedev.png";
+import NSCADLOGO from '../images/nextwavedev.png';
 import { WhiteSpacing } from "./microComponents/navbar/whiteSpacing";
 import { Item } from "./microComponents/navbar/item";
 
 const Navbar = () => {
-  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 480);
+  // Collapse state for small widths
+  const [isCollapsed, setIsCollapsed] = React.useState(window.innerWidth <= 800);
 
   React.useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 480);
+    const handleResize = () => {
+      setIsCollapsed(window.innerWidth <= 800);
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <div
+      className="navbar"
       style={{
         display: "flex",
-        flexDirection: isMobile ? "column" : "row", // stack on mobile, horizontal on desktop
-        height: isMobile ? "auto" : "95px",
-        gap: isMobile ? "0.5rem" : "1.5rem",
-        backgroundColor: "#004da8",
+        flexDirection: isCollapsed ? "column" : "row",
         alignItems: "center",
-        padding: isMobile ? "0.5rem 1rem" : "0 2rem",
+        justifyContent: isCollapsed ? "center" : "flex-start", // left-aligned on desktop
+        gap: isCollapsed ? "0.5rem" : "1rem",
+        height: isCollapsed ? "auto" : "95px",
+        backgroundColor: "#004da8",
+        padding: "0.5rem 1rem",
       }}
     >
-      <Link to="/">
+      <Link to={"/"}>
         <img
           src={NSCADLOGO}
           alt="Next Wave Dev Logo"
           style={{
-            width: isMobile ? "3rem" : "4rem",
-            height: "auto",
-            marginBottom: isMobile ? "0.5rem" : "0",
+            width: "4rem",
+            height: "4rem",
+            marginBottom: isCollapsed ? "0.5rem" : "0",
+            marginRight: isCollapsed ? "0" : ".5rem",
           }}
         />
       </Link>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: isMobile ? "column" : "row", // stack items on mobile
-          gap: isMobile ? "0.5rem" : "1rem",
-          flexWrap: "wrap",
-          width: isMobile ? "100%" : "auto",
-          alignItems: "center",
-        }}
-      >
-        <Item name="Contact" />
-        <WhiteSpacing />
-        <Item name="About" />
-        <WhiteSpacing />
-        <Item name="Developers" />
-        <WhiteSpacing />
-        <Item name="Portfolio" />
-        <WhiteSpacing />
-        <Item
-          name="Shop"
-          to="https://bonfire.com/store/next-wave-dev-store/"
-          external
-        />
-      </div>
+      <Item name={"Contact"} />
+      <WhiteSpacing />
+      <Item name={"About"} />
+      <WhiteSpacing />
+      <Item name={"Developers"} />
+      <WhiteSpacing />
+      <Item name={"Portfolio"} />
+      <WhiteSpacing />
+      <Item name="Shop" to="https://bonfire.com/store/next-wave-dev-store/" external />
     </div>
   );
 };

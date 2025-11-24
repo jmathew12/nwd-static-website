@@ -115,9 +115,9 @@ const Footer = () => {
 
         {/* Next Wave Dev Logo */}
         <Link
-          to={"https://northseattle.edu/"}
-          target="_blank"
-          rel="noopener noreferrer"
+          to={"/"}
+          // target="_blank"
+          // rel="noopener noreferrer"
         >
           <img
             src={NEXTWAVEDEV}

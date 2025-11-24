@@ -42,21 +42,19 @@ const Footer = () => {
               flexWrap: "wrap",
             }}
           >
-            <li>
-              <FooterLink name="Home" />
-            </li>
-            <li>
-              <FooterLink name="Contact" />
-            </li>
-            <li>
-              <FooterLink name="About" />
-            </li>
-            <li>
-              <FooterLink name="Developers" />
-            </li>
-            <li>
-              <FooterLink name="Portfolio" />
-            </li>
+            <li><FooterLink name="Home" /></li>
+            <li><FooterLink name="Contact" /></li>
+            <li><FooterLink name="About" /></li>
+            <li><FooterLink name="Developers" /></li>
+            <li><FooterLink name="Portfolio" /></li>          
+            <a
+              href="https://bonfire.com/store/next-wave-dev-store"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              Shop
+            </a>
           </ul>
         </ul>
 

@@ -1,21 +1,87 @@
-import * as React from 'react';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function FormComponent() {
-    return (
-        <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-            <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSc6TcZviCuDGUOS0Nm4geU5rDJnDxlghpY4VMyPbFmZRU3-mg/viewform?embedded=true"
-                width="640"
-                height="1002"
-                style={{
-                    border: "none",
-                    maxWidth: "100%",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-                    borderRadius: "8px",
-                }}
-            >
-                Loading…
-            </iframe>
-        </div>
-    );
+  const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    const formData = new FormData(e.target);
+
+    // Replace YOUR_FORM_ID with your actual Google Form ID
+    const googleFormUrl =
+      "https://docs.google.com/forms/d/e/1FAIpQLSc6TcZviCuDGUOS0Nm4geU5rDJnDxlghpY4VMyPbFmZRU3-mg/formResponse";
+
+    try {
+      await fetch(googleFormUrl, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData,
+      });
+
+      // Google Ads conversion trigger (optional)
+      if (window.gtag) {
+        window.gtag("event", "conversion", {
+          send_to: "AW-CONVERSION_ID/CONVERSION_LABEL",
+        });
+      }
+
+      // Redirect to thank-you page
+      navigate("/contact-thank-you");
+    } catch (err) {
+      console.error(err);
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+      <div style={{ marginBottom: "1rem" }}>
+        <label>Name</label>
+        <input
+          type="text"
+          name="entry.2005620554"
+          required
+          style={{ width: "100%", padding: "0.5rem" }}
+        />
+      </div>
+
+      <div style={{ marginBottom: "1rem" }}>
+        <label>Email</label>
+        <input
+          type="email"
+          name="emailAddress"
+          required
+          style={{ width: "100%", padding: "0.5rem" }}
+        />
+      </div>
+
+      <div style={{ marginBottom: "1rem" }}>
+        <label>Company / Organization</label>
+        <input
+          type="text"
+          name="entry.1065046570"
+          style={{ width: "100%", padding: "0.5rem" }}
+        />
+      </div>
+
+      <div style={{ marginBottom: "1rem" }}>
+        <label>Message</label>
+        <textarea
+          name="entry.839337160"
+          required
+          rows={5}
+          style={{ width: "100%", padding: "0.5rem" }}
+        />
+      </div>
+
+      <button type="submit" disabled={submitting}>
+        {submitting ? "Submitting..." : "Submit"}
+      </button>
+    </form>
+  );
 }
+

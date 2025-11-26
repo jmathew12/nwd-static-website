@@ -1,8 +1,19 @@
+import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
 
 function ContactThankYou() {
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-17737966605/Pv75CKfJ8sYbEI3Ij4pC',
+        value: 1.0,
+        currency: 'USD'
+      });
+    }
+  }, []);
+  
   return (
     <>
       <Helmet>

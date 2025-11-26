@@ -16,7 +16,7 @@ function Contact() {
         <div
           style={{
             marginTop: "10vh",
-            marginBottom: "30vh",
+            marginBottom: "10vh",
             marginLeft: "2rem",
             marginRight: "2rem",
             height: "100%",

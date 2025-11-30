@@ -390,8 +390,133 @@ navbar
     gap: 2rem; */
   }
 }
+
+/* ------------------------------
+   GLOBAL RESPONSIVE BREAKPOINTS
+   (Add these at the bottom only)
+--------------------------------*/
+
+/* Small phones (Portrait, ≤480px) */
+@media (max-width: 480px) {
+  .navbar,
+  .footer,
+  .container,
+  .content-wrapper {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .navbar {
+    flex-direction: column !important;
+    align-items: center !important;
+    height: auto !important;
+  }
+
+  .footer-links,
+  .footer-section,
+  .footer-container {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+
+  .page-content,
+  .main-content {
+    width: 100% !important;
+  }
+}
+
+/* Tablets (481px–1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .navbar,
+  .footer,
+  .container,
+  .content-wrapper {
+    padding: 1.5rem 2rem;
+    width: 100%;
+  }
+
+  img {
+    max-width: 90%;
+    height: auto;
+  }
+
+  .navbar {
+    gap: 1rem;
+  }
+
+  .footer-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .page-content,
+  .main-content {
+    width: 90% !important;
+    margin: 0 auto;
+  }
+}
+
+/* Desktops (≥1025px) */
+@media (min-width: 1025px) {
+  .container,
+  .content-wrapper,
+  .page-content,
+  .main-content {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+/* Prevent any layout from being wider than the screen */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Images: scale down but never overflow or cut off */
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 /* ==========
  portfolio
  ========== */
 
 /* ==== project component ==== */
+
+/* Fix portfolio preview cut-off on small and medium screens */
+@media (max-width: 1150px) {
+  .portfolio-div {
+    flex-direction: column;
+    height: auto; /* Prevent cutoff */
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .portfolio-div__flexcol__heading {
+    font-size: 2.2rem;
+  }
+
+  .portfolio-div__examples {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .portfolio-div__examples__photo {
+    max-width: 350px; /* Keeps original image size */
+    height: auto;
+  }
+}

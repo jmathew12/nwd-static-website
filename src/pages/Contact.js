@@ -12,7 +12,7 @@ function Contact() {
         <title> Next Wave Dev - Contact </title>
       </Helmet>
       <Navbar />
-      <div style={{ minHeight: "calc(100vh - 95px)", height: "1px" }}>
+      <div style={{ minHeight: "calc(100vh - 95px)" }}>
         <div
           style={{
             marginTop: "10vh",

@@ -1,6 +1,15 @@
 /* ==========
  Universal Rules
  ========== */
+ html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* no horizontal scroll */
+  box-sizing: border-box;
+}
+
 :root {
   --bg-color: white;
   --primary-blue: rgb(0, 77, 168);
@@ -540,38 +549,6 @@ img {
     height: auto;
   }
 
-  /* Footer: center Contact under Navigation on small screens */
-@media (max-width: 740px) {
-  /* make sure the first column (navigation + contact) centers its inner lists */
-  .navbar + div, /* defensive: if footer directly follows navbar */
-  .footer, /* if you ever add a .footer class */
-  div[style*="background-color: #004da8"] { /* fallback: targets your footer container by inline style color if present */
-    /* no layout change here, just enabling centering for children */
-  }
-
-  /* specifically center the contact block */
-  .footer-contact {
-    display: flex;
-    flex-direction: column;
-    align-items: center;   /* centers children horizontally */
-    text-align: center;    /* centers text inside the block */
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* ensure the contact li/link centers too */
-  .footer-contact li,
-  .footer-contact a {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  /* if the navigation block needs to be centered horizontally too,
-     ensure both blocks share the same centering behavior */
-  .footer-contact + .some-sibling { /* no-op; keep for future use */
-  }
-}
- 
 /* ========== Developers Page Small Screen Fix ========== */
 @media (max-width: 375px) { /* iPhone SE portrait */
   /* Make "Our Developers" heading scale and wrap */
@@ -598,8 +575,5 @@ img {
   .students-flexcolumn__student-flex-item__info-div a {
     word-break: break-all; /* allows long emails/links to wrap */
   }
-}
-
-
-  
+}  
 }

@@ -61,7 +61,7 @@ const Footer = () => {
           </ul>
         </ul>
 
-        <ul>
+        <ul className="footer-contact">
           <h4 style={{ ...footerCategory }}>Contact Us</h4>
           <Separator />
           <Link

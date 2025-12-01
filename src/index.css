@@ -320,13 +320,33 @@ navbar
 .shadow {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
+
 /* ==========
  about
  ========== */
+/* Stack About page title above text on small screens */
+@media (max-width: 900px) {
+  .about-flex-parent {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 2rem;
+  }
 
+  .about-flex-child {
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+
+ 
 /* ==========
  students
  ========== */
+
+ 
 .students-flexcolumn {
   min-width: 200px;
   width: 80vw;
@@ -519,4 +539,67 @@ img {
     max-width: 350px; /* Keeps original image size */
     height: auto;
   }
+
+  /* Footer: center Contact under Navigation on small screens */
+@media (max-width: 740px) {
+  /* make sure the first column (navigation + contact) centers its inner lists */
+  .navbar + div, /* defensive: if footer directly follows navbar */
+  .footer, /* if you ever add a .footer class */
+  div[style*="background-color: #004da8"] { /* fallback: targets your footer container by inline style color if present */
+    /* no layout change here, just enabling centering for children */
+  }
+
+  /* specifically center the contact block */
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centers children horizontally */
+    text-align: center;    /* centers text inside the block */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ensure the contact li/link centers too */
+  .footer-contact li,
+  .footer-contact a {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* if the navigation block needs to be centered horizontally too,
+     ensure both blocks share the same centering behavior */
+  .footer-contact + .some-sibling { /* no-op; keep for future use */
+  }
+}
+ 
+/* ========== Developers Page Small Screen Fix ========== */
+@media (max-width: 375px) { /* iPhone SE portrait */
+  /* Make "Our Developers" heading scale and wrap */
+  .students-flexcolumn__h1 {
+    font-size: 2rem;      /* smaller font to fit */
+    width: auto;           /* allow full width */
+    white-space: normal;   /* allow line breaks */
+  }
+
+  /* Ensure each developer card stacks nicely */
+  .students-flexcolumn__student-flex-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* Ensure developer info section takes full width */
+  .students-flexcolumn__student-flex-item__info-div {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Make email addresses wrap instead of cutting off */
+  .students-flexcolumn__student-flex-item__info-div a {
+    word-break: break-all; /* allows long emails/links to wrap */
+  }
+}
+
+
+  
 }

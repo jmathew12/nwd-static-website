@@ -11,12 +11,15 @@ const Footer = () => {
       style={{
         display: "flex",
         flexDirection: "row",
-        width: "auto",
-        height: "120px",
+        width: "100%",
+        minHeight: "120px",
         gap: "5rem",
         backgroundColor: "#004da8",
         alignItems: "center",
         justifyContent: "space-evenly",
+        flexWrap: "wrap", 
+        padding: "1rem 2rem",
+        boxSizing: "border-box",
         flexWrap: "wrap",
       }}
     >
@@ -27,7 +30,8 @@ const Footer = () => {
           width: "auto",
           gap: "5rem",
           flexWrap: "wrap",
-          justifyContent: "center",
+          justifyContent: "flex-start", // maintain original left alignment
+          alignItems: "center"
         }}
       >
         <ul style={{ ...footerList }}>
@@ -40,6 +44,7 @@ const Footer = () => {
               flexDirection: "row",
               gap: "1rem",
               flexWrap: "wrap",
+              justifyContent: "flex-start" // maintain left alignment
             }}
           >
             <li><FooterLink name="Home" /></li>
@@ -58,7 +63,7 @@ const Footer = () => {
           </ul>
         </ul>
 
-        <ul>
+        <ul className="footer-contact">
           <h4 style={{ ...footerCategory }}>Contact Us</h4>
           <Separator />
           <Link
@@ -77,8 +82,8 @@ const Footer = () => {
           width: "auto",
           gap: "2rem",
           alignItems: "center",
-          justifyContent: "center",
-          flexWrap: "wrap",
+          justifyContent: "flex-end", // maintain original right alignment
+          flexWrap: "wrap"
         }}
       >
         {/* LinkedIn Icon */}
@@ -113,7 +118,6 @@ const Footer = () => {
           />
         </a>
 
-        {/* Next Wave Dev Logo */}
         <Link
           to={"/"}
           // target="_blank"
@@ -122,7 +126,7 @@ const Footer = () => {
           <img
             src={NEXTWAVEDEV}
             alt="Next Wave Dev logo"
-            style={{ width: "6rem" }}
+            style={{ width: "6rem", height: "auto" }}
           />
         </Link>
       </div>

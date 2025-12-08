@@ -1,18 +1,26 @@
+import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
-import { FormComponent } from "../components/microComponents/contact/form";
-// import {useState} from "react";
-// Commented out for now since useState is not being used
 
-function Contact() {
+function ContactThankYou() {
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-17737966605/Pv75CKfJ8sYbEI3Ij4pC',
+        value: 1.0,
+        currency: 'USD'
+      });
+    }
+  }, []);
+  
   return (
     <>
       <Helmet>
-        <title> Next Wave Dev - Contact </title>
+        <title> Next Wave Dev - Thank You </title>
       </Helmet>
       <Navbar />
-      <div style={{ minHeight: "calc(100vh - 95px)" }}>
+      <div style={{ minHeight: "calc(100vh - 95px)", height: "1px" }}>
         <div
           style={{
             marginTop: "10vh",
@@ -28,8 +36,20 @@ function Contact() {
               height: "100%",
             }}
           >
-            <div style={flexChild} className={"col-sm-6"}>
-              <FormComponent />
+            <div
+              style={{
+                ...flexChild,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                fontSize: "1.5rem",
+                fontWeight: "500",
+                color: "#333",
+              }}
+              className={"col-sm-6"}
+            >
+              <p>Thank you! Your response has been submitted.</p>
             </div>
             <div
               style={{
@@ -72,4 +92,4 @@ export const flexParent = {
   flexWrap: "wrap",
 };
 
-export default Contact;
+export default ContactThankYou;

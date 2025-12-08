@@ -19,7 +19,7 @@ const Footer = () => {
         justifyContent: "space-evenly",
         flexWrap: "wrap", 
         padding: "1rem 2rem",
-        boxSizing: "border-box"
+        boxSizing: "border-box",
         flexWrap: "wrap",
       }}
     >

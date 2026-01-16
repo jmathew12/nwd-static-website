@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NSCADLOGO from '../images/nextwavedev.png';
+import NWDLogo from '../images/NextWaveDevLogo/NextWaveDev_FINAL.png';
 import { WhiteSpacing } from "./microComponents/navbar/whiteSpacing";
 import { Item } from "./microComponents/navbar/item";
 
@@ -32,7 +32,7 @@ const Navbar = () => {
     >
       <Link to={"/"}>
         <img
-          src={NSCADLOGO}
+          src={NWDLogo}
           alt="Next Wave Dev Logo"
           style={{
             width: "4rem",

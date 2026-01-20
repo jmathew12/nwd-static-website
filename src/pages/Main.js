@@ -87,6 +87,17 @@ function Main() {
           and experience gained through the program." - Nick Ramirez
         </p>
       </div>
+      <div className="shop-section">
+        <div className="shop-section__content">
+          <h2 className="shop-section__title">Shop</h2>
+          <p className="shop-section__description">
+            Support our mission and show your Next Wave Dev pride with our exclusive merchandise
+          </p>
+          <Link to="/shop" className="shop-section__button">
+            Visit Shop
+          </Link>
+        </div>
+      </div>
       <div className="contact-div">
         <div className="contact-div__contact-wrapper">
           <FormComponent />

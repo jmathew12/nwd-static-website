@@ -93,9 +93,14 @@ function Main() {
           <p className="shop-section__description">
             Support our mission and show your Next Wave Dev pride with our exclusive merchandise
           </p>
-          <Link to="/shop" className="shop-section__button">
+          <a
+            href="https://www.bonfire.com/store/next-wave-dev-store/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shop-section__button"
+          >
             Visit Shop
-          </Link>
+          </a>
         </div>
       </div>
       <div className="contact-div">

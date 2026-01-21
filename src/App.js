@@ -6,7 +6,7 @@ import ContactThankYou from './pages/ContactThankYou';
 import About from './pages/About'
 import PortfolioPage from './pages/PortfolioPage'
 import DevelopersPage from './pages/DevelopersPage'
-import ShopPage from './pages/ShopPage'
+
 import ReactGA from "react-ga4";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Route path='/About' element={<About />} />
         <Route path='/Portfolio' element={<PortfolioPage />} />
         <Route path='/Developers' element={<DevelopersPage />} />
-        <Route path='/shop' element={<ShopPage />} />
+
       </Routes>
     </Router>
   );

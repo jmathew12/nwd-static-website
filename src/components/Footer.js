@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FooterLink } from "./microComponents/footer/footerLink";
 import { Separator } from "./microComponents/footer/separator";
-import NEXTWAVEDEV from "../images/nextwavedev.png";
+import NEXTWAVEDEV from "../images/NextWaveDevLogo/NextWaveDev_FINAL_SMALL.jpg";
 import CANDID_SEAL from "../images/candid-transparency-logo.svg";
 import LINKEDIN_ICON from "../images/linkedin_logo.png";
 
@@ -17,7 +17,7 @@ const Footer = () => {
         backgroundColor: "#004da8",
         alignItems: "center",
         justifyContent: "space-evenly",
-        flexWrap: "wrap", 
+        flexWrap: "wrap",
         padding: "1rem 2rem",
         boxSizing: "border-box",
         flexWrap: "wrap",
@@ -51,7 +51,7 @@ const Footer = () => {
             <li><FooterLink name="Contact" /></li>
             <li><FooterLink name="About" /></li>
             <li><FooterLink name="Developers" /></li>
-            <li><FooterLink name="Portfolio" /></li>          
+            <li><FooterLink name="Portfolio" /></li>
             <a
               href="https://bonfire.com/store/next-wave-dev-store"
               target="_blank"
@@ -120,8 +120,8 @@ const Footer = () => {
 
         <Link
           to={"/"}
-          // target="_blank"
-          // rel="noopener noreferrer"
+        // target="_blank"
+        // rel="noopener noreferrer"
         >
           <img
             src={NEXTWAVEDEV}

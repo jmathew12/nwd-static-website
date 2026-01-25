@@ -7,6 +7,8 @@ import { Item } from "./microComponents/navbar/item";
 const Navbar = () => {
   // Collapse state for small widths
   const [isCollapsed, setIsCollapsed] = React.useState(window.innerWidth <= 800);
+  // Dropdown state for Join Us menu
+  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -50,6 +52,25 @@ const Navbar = () => {
       <Item name={"Developers"} />
       <WhiteSpacing />
       <Item name={"Portfolio"} />
+      <WhiteSpacing />
+      <div className="nav-dropdown">
+        <span
+          className="nav-dropdown-toggle"
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        >
+          Join Us
+        </span>
+        {isDropdownOpen && (
+          <div className="nav-dropdown-menu">
+            <Link to="/Graduates" className="nav-dropdown-item" onClick={() => setIsDropdownOpen(false)}>
+              Graduates
+            </Link>
+            <Link to="/Companies" className="nav-dropdown-item" onClick={() => setIsDropdownOpen(false)}>
+              Companies
+            </Link>
+          </div>
+        )}
+      </div>
       <WhiteSpacing />
       <Item name="Shop" to="https://bonfire.com/store/next-wave-dev-store/" external />
     </div>

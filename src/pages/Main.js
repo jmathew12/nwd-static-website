@@ -87,6 +87,21 @@ function Main() {
           and experience gained through the program." - Nick Ramirez
         </p>
       </div>
+      <div className="donation-div">
+        <div className="donation-div__flexcol">
+          <p className="donation-div__flexcol__heading">
+            Support the Next Wave of Developers
+          </p>
+          <p className="donation-div__flexcol__paragraph">
+            Your contribution helps us provide essential resources, mentorship, and real-world project opportunities to aspiring sutdent developers, empowering them to launch successful careers in tech.
+          </p>
+          <Link to={"/Donation"}>
+            <button className="donation-div__button" type="button">
+              Donate Now
+            </button>
+          </Link>
+        </div>
+      </div>
       <div className="contact-div">
         <div className="contact-div__contact-wrapper">
           <FormComponent />

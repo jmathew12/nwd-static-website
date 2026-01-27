@@ -87,6 +87,27 @@ function Main() {
           and experience gained through the program." - Nick Ramirez
         </p>
       </div>
+      <div className="graduates-companies-section">
+        <h2 className="graduates-companies-section__title">Graduates & Companies</h2>
+        <div className="graduates-companies-section__tiles">
+          <Link to="/graduates" className="graduates-companies-section__tile">
+            <div className="graduates-companies-section__tile-content">
+              <h3 className="graduates-companies-section__tile-heading">Graduates</h3>
+              <p className="graduates-companies-section__tile-description">
+                Explore success stories and career journeys of our program graduates
+              </p>
+            </div>
+          </Link>
+          <Link to="/companies" className="graduates-companies-section__tile">
+            <div className="graduates-companies-section__tile-content">
+              <h3 className="graduates-companies-section__tile-heading">Companies</h3>
+              <p className="graduates-companies-section__tile-description">
+                Discover how companies partner with us to build exceptional talent
+              </p>
+            </div>
+          </Link>
+        </div>
+      </div>
       <div className="contact-div">
         <div className="contact-div__contact-wrapper">
           <FormComponent />

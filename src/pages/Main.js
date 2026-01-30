@@ -83,9 +83,9 @@ function Main() {
           </Link>
         </div>
         <p className="student-prev__quote">
-          “Growth doesn’t come from comfort. It comes from showing up, learning together, 
-          and building things that matter.”
-        </p>
+          “Growth and comfort do not coexist.” <br />
+          <span>— Ginni Rometty</span>
+          </p>
       </div>
       <div className="shop-section">
         <div className="shop-section__content">

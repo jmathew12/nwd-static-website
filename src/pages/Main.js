@@ -83,8 +83,8 @@ function Main() {
           </Link>
         </div>
         <p className="student-prev__quote">
-          "This was the best investment I could have made due to the confidence
-          and experience gained through the program." - Nick Ramirez
+          “Growth doesn’t come from comfort. It comes from showing up, learning together, 
+          and building things that matter.”
         </p>
       </div>
       <div className="shop-section">

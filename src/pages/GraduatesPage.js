@@ -6,31 +6,19 @@ function GraduatesPage() {
     return (
         <>
             <Helmet>
-                <title>Next Wave Dev - Graduates</title>
+                <title>Graduates - Next Wave Dev</title>
             </Helmet>
             <Navbar />
-
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    minHeight: '70vh',
-                    padding: '2rem',
-                }}
-            >
-                <h1 style={{ fontSize: '3rem', color: '#004da8', marginBottom: '1rem' }}>
-                    Graduates Page
+            <div style={{ padding: "5rem 5vw", maxWidth: "2200px", margin: "0 auto" }}>
+                <h1 style={{ fontSize: "3rem", fontWeight: "700", marginBottom: "2rem" }}>
+                    Our Graduates
                 </h1>
-                <p style={{ fontSize: '1.5rem', color: '#666', textAlign: 'center', maxWidth: '600px' }}>
-                    Coming Soon - This page is under construction.
-                </p>
-                <p style={{ fontSize: '1.2rem', color: '#999', marginTop: '1rem' }}>
-                    Check back later for more information about joining Next Wave Dev as a graduate.
+                <p style={{ fontSize: "1.2rem", lineHeight: "1.8", color: "#333" }}>
+                    Welcome to the Graduates page. Here you'll find success stories and career
+                    journeys of our program graduates who have gone on to make their mark in the
+                    tech industry.
                 </p>
             </div>
-
             <Footer />
         </>
     );

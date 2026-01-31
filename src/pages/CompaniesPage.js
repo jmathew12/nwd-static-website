@@ -6,31 +6,19 @@ function CompaniesPage() {
     return (
         <>
             <Helmet>
-                <title>Next Wave Dev - Companies</title>
+                <title>Companies - Next Wave Dev</title>
             </Helmet>
             <Navbar />
-
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    minHeight: '70vh',
-                    padding: '2rem',
-                }}
-            >
-                <h1 style={{ fontSize: '3rem', color: '#004da8', marginBottom: '1rem' }}>
-                    Companies Page
+            <div style={{ padding: "5rem 5vw", maxWidth: "2200px", margin: "0 auto" }}>
+                <h1 style={{ fontSize: "3rem", fontWeight: "700", marginBottom: "2rem" }}>
+                    Partner Companies
                 </h1>
-                <p style={{ fontSize: '1.5rem', color: '#666', textAlign: 'center', maxWidth: '600px' }}>
-                    Coming Soon - This page is under construction.
-                </p>
-                <p style={{ fontSize: '1.2rem', color: '#999', marginTop: '1rem' }}>
-                    Check back later for more information about partnering with Next Wave Dev.
+                <p style={{ fontSize: "1.2rem", lineHeight: "1.8", color: "#333" }}>
+                    Welcome to the Companies page. Discover how companies partner with us to
+                    build exceptional talent and create opportunities for the next generation
+                    of developers.
                 </p>
             </div>
-
             <Footer />
         </>
     );

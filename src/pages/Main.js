@@ -83,9 +83,9 @@ function Main() {
           </Link>
         </div>
         <p className="student-prev__quote">
-          "This was the best investment I could have made due to the confidence
-          and experience gained through the program." - Nick Ramirez
-        </p>
+          “Growth and comfort do not coexist.” <br />
+          <span>— Ginni Rometty</span>
+          </p>
       </div>
       <div className="graduates-companies-section">
         <h2 className="graduates-companies-section__title">Graduates & Companies</h2>

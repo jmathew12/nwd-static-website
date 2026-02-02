@@ -8,6 +8,7 @@ import PortfolioPage from './pages/PortfolioPage'
 import DevelopersPage from './pages/DevelopersPage'
 import GraduatesPage from './pages/GraduatesPage'
 import CompaniesPage from './pages/CompaniesPage'
+import Donation from './pages/Donation';
 import ReactGA from "react-ga4";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='/Developers' element={<DevelopersPage />} />
         <Route path='/graduates' element={<GraduatesPage />} />
         <Route path='/companies' element={<CompaniesPage />} />
+        <Route path='/Donation' element={<Donation />} />
       </Routes>
     </Router>
   );

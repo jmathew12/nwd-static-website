@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NWDLogo from '../images/NextWaveDevLogo/NextWaveDev_FINAL.png';
+import NWDLogo from '../images/NextWaveDevLogo/NextWaveDev_FINAL_SMALL.jpg';
 import { WhiteSpacing } from "./microComponents/navbar/whiteSpacing";
 import { Item } from "./microComponents/navbar/item";
 

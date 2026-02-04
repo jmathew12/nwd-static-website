@@ -73,6 +73,9 @@ const Navbar = () => {
       </div>
       <WhiteSpacing />
       <Item name="Shop" to="https://bonfire.com/store/next-wave-dev-store/" external />
+      <WhiteSpacing />
+      <Item name={"Donation"} />
+      
     </div>
   );
 };

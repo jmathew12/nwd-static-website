@@ -73,6 +73,24 @@ const Footer = () => {
             <li style={{ ...footerList }}>nextwavedev.org@gmail.com</li>
           </Link>
         </ul>
+
+        <ul style={{ ...footerList }}>
+          <h4 style={{ ...footerCategory }}>Join Us</h4>
+          <Separator />
+          <ul
+            style={{
+              ...footerList,
+              display: "flex",
+              flexDirection: "row",
+              gap: "1rem",
+              flexWrap: "wrap",
+              justifyContent: "flex-start"
+            }}
+          >
+            <li><FooterLink name="Graduates" to="/graduates" /></li>
+            <li><FooterLink name="Companies" to="/companies" /></li>
+          </ul>
+        </ul>
       </div>
 
       <div

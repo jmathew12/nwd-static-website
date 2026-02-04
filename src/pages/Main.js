@@ -16,7 +16,7 @@ const studentDataSlice = studentDatafiltered.slice(0, 16);
 function Main() {
   console.log(studentDatafiltered.length);
   return (
-    <>
+    <>  
       <Helmet>
         <title> Next Wave Dev </title>
       </Helmet>
@@ -99,6 +99,9 @@ function Main() {
             <button className="donation-div__button" type="button">
               Donate Now
             </button>
+          </Link>
+        </div> 
+      </div>  
       <div className="graduates-companies-section">
         <h2 className="graduates-companies-section__title">Graduates & Companies</h2>
         <div className="graduates-companies-section__tiles">

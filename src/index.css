@@ -95,6 +95,7 @@ navbar
 .homepage-content,
 .portfolio-div,
 .student-prev,
+.donation-div,
 .contact-div {
   max-width: 2200px;
   margin: 0 auto;
@@ -332,6 +333,58 @@ navbar
     max-width: 20ch;
   }
 }
+/* ======= donation ======= */
+.donation-div {
+  height: 40vh;
+  background-color: var(--bg-color);
+  background: linear-gradient(
+    90deg,
+    rgba(55, 55, 55, 0) 0%,
+    rgba(149, 202, 89, 0) 18%,
+    rgba(149, 202, 89, 1) 69%
+  );
+  display: flex;
+}
+.donation-div__flexcol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  text-align: center;
+}
+.donation-div__flexcol__heading {
+  font-size: 3rem;
+  font-weight: 700;
+  width: flex;
+}
+.donation-div__flexcol__paragraph {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+.donation-div__button {
+  display: inline-block;
+  background-color: #3b82f3;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffff;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+
+}
+@media (max-width: 800px) {
+  .donation-div {
+    height: fit-content;
+    padding-block: 2.5rem;
+    align-items: center;
+  }
+  .donation-div__flexcol__heading {
+    width: 20ch;
+  }
+}
+
 /* ======= Graduates & Companies section ======= */
 .graduates-companies-section {
   background-color: var(--secondary-green);
@@ -753,6 +806,74 @@ img {
     height: auto;
   }
 
+/* ========== Developers Page Small Screen Fix ========== */
+@media (max-width: 375px) { /* iPhone SE portrait */
+  /* Make "Our Developers" heading scale and wrap */
+  .students-flexcolumn__h1 {
+    font-size: 2rem;      /* smaller font to fit */
+    width: auto;           /* allow full width */
+    white-space: normal;   /* allow line breaks */
+  }
+
+  /* Ensure each developer card stacks nicely */
+  .students-flexcolumn__student-flex-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* Ensure developer info section takes full width */
+  .students-flexcolumn__student-flex-item__info-div {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Make email addresses wrap instead of cutting off */
+  .students-flexcolumn__student-flex-item__info-div a {
+    word-break: break-all; /* allows long emails/links to wrap */
+  }
+}  
+}
+
+/* ========== donation ========== */
+@media (min-width: 900px) {
+  .col-sm-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .ps-sm-2 {
+    padding-left: 2rem;
+  }
+  .ps-sm-5 {
+    padding-left: 5rem;
+  }
+}
+@media (max-width: 900px) {
+  #contact-page-map {
+    margin-top: 5rem;
+    width: 100% !important;
+  }
+  .xs-center {
+    text-align: center;
+  }
+  .flex-xs-center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.donation-button:active {
+  transition: all 0.125s ease-in-out;
+  background-color: rgb(209, 240, 196) !important;
+}
+.donation-button {
+  cursor: pointer;
+}
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
   /* ========== Developers Page Small Screen Fix ========== */
   @media (max-width: 375px) {
 

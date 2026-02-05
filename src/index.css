@@ -675,20 +675,34 @@ navbar
    (Add these at the bottom only)
 --------------------------------*/
 
+/* Prevent any layout from being wider than the screen */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Global responsive media: scale down, keep aspect ratio */
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Optional: helps avoid inline gaps for images/videos */
+img,
+video {
+  display: block;
+}
+
 /* Small phones (Portrait, ≤480px) */
 @media (max-width: 480px) {
-
   .navbar,
   .footer,
   .container,
   .content-wrapper {
     padding: 1rem;
     width: 100%;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
   }
 
   .navbar {
@@ -712,18 +726,12 @@ navbar
 
 /* Tablets (481px–1024px) */
 @media (min-width: 481px) and (max-width: 1024px) {
-
   .navbar,
   .footer,
   .container,
   .content-wrapper {
     padding: 1.5rem 2rem;
     width: 100%;
-  }
-
-  img {
-    max-width: 90%;
-    height: auto;
   }
 
   .navbar {
@@ -744,7 +752,6 @@ navbar
 
 /* Desktops (≥1025px) */
 @media (min-width: 1025px) {
-
   .container,
   .content-wrapper,
   .page-content,
@@ -752,38 +759,13 @@ navbar
     max-width: 1400px;
     margin: 0 auto;
   }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
 }
-
-/* Prevent any layout from being wider than the screen */
-html,
-body {
-  overflow-x: hidden;
-}
-
-/* Images: scale down but never overflow or cut off */
-img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* ==========
- portfolio
- ========== */
-
-/* ==== project component ==== */
 
 /* Fix portfolio preview cut-off on small and medium screens */
 @media (max-width: 1150px) {
   .portfolio-div {
     flex-direction: column;
-    height: auto;
-    /* Prevent cutoff */
+    height: auto; /* Prevent cutoff */
     align-items: center;
     text-align: center;
     padding: 2rem 1rem;
@@ -801,41 +783,36 @@ img {
   }
 
   .portfolio-div__examples__photo {
-    max-width: 350px;
-    /* Keeps original image size */
+    max-width: 350px; /* Keeps original image size */
     height: auto;
   }
+} 
 
-/* ========== Developers Page Small Screen Fix ========== */
-@media (max-width: 375px) { /* iPhone SE portrait */
-  /* Make "Our Developers" heading scale and wrap */
+/* Developers Page Small Screen Fix (iPhone SE portrait) */
+@media (max-width: 375px) {
   .students-flexcolumn__h1 {
-    font-size: 2rem;      /* smaller font to fit */
-    width: auto;           /* allow full width */
-    white-space: normal;   /* allow line breaks */
+    font-size: 2rem;
+    width: auto;
+    white-space: normal;
   }
 
-  /* Ensure each developer card stacks nicely */
   .students-flexcolumn__student-flex-item {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
   }
 
-  /* Ensure developer info section takes full width */
   .students-flexcolumn__student-flex-item__info-div {
     width: 100%;
     text-align: center;
   }
 
-  /* Make email addresses wrap instead of cutting off */
   .students-flexcolumn__student-flex-item__info-div a {
-    word-break: break-all; /* allows long emails/links to wrap */
+    word-break: break-all;
   }
-}  
 }
 
-/* ========== donation ========== */
+/* Donation page responsiveness */
 @media (min-width: 900px) {
   .col-sm-6 {
     -webkit-box-flex: 0;
@@ -850,6 +827,7 @@ img {
     padding-left: 5rem;
   }
 }
+
 @media (max-width: 900px) {
   #contact-page-map {
     margin-top: 5rem;
@@ -865,46 +843,16 @@ img {
     align-items: center;
   }
 }
+
 .donation-button:active {
   transition: all 0.125s ease-in-out;
   background-color: rgb(209, 240, 196) !important;
 }
+
 .donation-button {
   cursor: pointer;
 }
+
 .shadow {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-  /* ========== Developers Page Small Screen Fix ========== */
-  @media (max-width: 375px) {
-
-    /* iPhone SE portrait */
-    /* Make "Our Developers" heading scale and wrap */
-    .students-flexcolumn__h1 {
-      font-size: 2rem;
-      /* smaller font to fit */
-      width: auto;
-      /* allow full width */
-      white-space: normal;
-      /* allow line breaks */
-    }
-
-    /* Ensure each developer card stacks nicely */
-    .students-flexcolumn__student-flex-item {
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    /* Ensure developer info section takes full width */
-    .students-flexcolumn__student-flex-item__info-div {
-      width: 100%;
-      text-align: center;
-    }
-
-    /* Make email addresses wrap instead of cutting off */
-    .students-flexcolumn__student-flex-item__info-div a {
-      word-break: break-all;
-      /* allows long emails/links to wrap */
-    }
-  }
 }

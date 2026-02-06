@@ -675,13 +675,13 @@ navbar
    (Add these at the bottom only)
 --------------------------------*/
 
-/* Prevent any layout from being wider than the screen */
+/* Prevent horizontal scrolling */
 html,
 body {
   overflow-x: hidden;
 }
 
-/* Global responsive media: scale down, keep aspect ratio */
+/* Global responsive media */
 img,
 video,
 svg {
@@ -689,13 +689,14 @@ svg {
   height: auto;
 }
 
-/* Optional: helps avoid inline gaps for images/videos */
 img,
 video {
   display: block;
 }
 
-/* Small phones (Portrait, ≤480px) */
+/* ==============================
+   SMALL PHONES (≤480px)
+================================*/
 @media (max-width: 480px) {
   .navbar,
   .footer,
@@ -724,7 +725,9 @@ video {
   }
 }
 
-/* Tablets (481px–1024px) */
+/* ==============================
+   TABLETS (481px–1024px)
+================================*/
 @media (min-width: 481px) and (max-width: 1024px) {
   .navbar,
   .footer,
@@ -750,7 +753,9 @@ video {
   }
 }
 
-/* Desktops (≥1025px) */
+/* ==============================
+   DESKTOPS (≥1025px)
+================================*/
 @media (min-width: 1025px) {
   .container,
   .content-wrapper,
@@ -761,11 +766,13 @@ video {
   }
 }
 
-/* Fix portfolio preview cut-off on small and medium screens */
+/* ==============================
+   PORTFOLIO RESPONSIVE FIX
+================================*/
 @media (max-width: 1150px) {
   .portfolio-div {
     flex-direction: column;
-    height: auto; /* Prevent cutoff */
+    height: auto;
     align-items: center;
     text-align: center;
     padding: 2rem 1rem;
@@ -783,12 +790,26 @@ video {
   }
 
   .portfolio-div__examples__photo {
-    max-width: 350px; /* Keeps original image size */
+    max-width: 350px;
     height: auto;
   }
-} 
+}
 
-/* Developers Page Small Screen Fix (iPhone SE portrait) */
+/* ==============================
+   IMPORTANT VISIBLE FIX
+   Student Preview Section
+================================*/
+@media (max-width: 800px) {
+  .student-prev {
+    height: auto;          /* removes fixed 55vh */
+    padding: 2.5rem 1rem;  /* adds breathing room */
+    flex-direction: column-reverse;
+  }
+}
+
+/* ==============================
+   DEVELOPERS PAGE (iPhone SE)
+================================*/
 @media (max-width: 375px) {
   .students-flexcolumn__h1 {
     font-size: 2rem;
@@ -812,17 +833,19 @@ video {
   }
 }
 
-/* Donation page responsiveness */
+/* ==============================
+   DONATION / CONTACT RESPONSIVE
+================================*/
 @media (min-width: 900px) {
   .col-sm-6 {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
   }
+
   .ps-sm-2 {
     padding-left: 2rem;
   }
+
   .ps-sm-5 {
     padding-left: 5rem;
   }
@@ -833,9 +856,11 @@ video {
     margin-top: 5rem;
     width: 100% !important;
   }
+
   .xs-center {
     text-align: center;
   }
+
   .flex-xs-center {
     display: flex;
     justify-content: center;
@@ -844,13 +869,14 @@ video {
   }
 }
 
+/* Buttons & shadows */
+.donation-button {
+  cursor: pointer;
+}
+
 .donation-button:active {
   transition: all 0.125s ease-in-out;
   background-color: rgb(209, 240, 196) !important;
-}
-
-.donation-button {
-  cursor: pointer;
 }
 
 .shadow {

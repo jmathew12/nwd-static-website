@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FooterLink } from "./microComponents/footer/footerLink";
 import { Separator } from "./microComponents/footer/separator";
 import NEXTWAVEDEV from "../images/NextWaveDevLogo/NextWaveDev_FINAL_SMALL.jpg";
-import CANDID_SEAL from "../images/candid-transparency-logo.svg";
+import CANDID_SEAL from "../images/candid-transparency-logo.png";
 import LINKEDIN_ICON from "../images/linkedin_logo.png";
 
 const Footer = () => {
@@ -106,7 +106,7 @@ const Footer = () => {
         >
           <img
             src={CANDID_SEAL}
-            alt="Candid Seal of Transparency"
+            alt="Candid Silver Seal of Transparency"
             style={{
               height: "64px",
               width: "auto",

@@ -1,7 +1,6 @@
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import belindas from "../images/belindasmobile.png";
-import pelletier from "../images/pelletier.png";
+import nwdScreenshot from "../images/next-wave-dev.png";
 import DeveloperThumbnail from "../components/DeveloperThumbnail";
 import studentData from "../students.json";
 import { Helmet } from "react-helmet";
@@ -49,21 +48,11 @@ function Main() {
           <div className="portfolio-div__examples_entry">
             <img
               className="portfolio-div__examples__photo"
-              alt="example portable web app"
-              src={belindas}
+              alt="Next Wave Dev website"
+              src={nwdScreenshot}
             />
             <p className="portfolio-div__examples_description">
-              Belinda's Closet
-            </p>
-          </div>
-          <div className="portfolio-div__examples_entry">
-            <img
-              className="portfolio-div__examples__photo"
-              alt="example desktop web app"
-              src={pelletier}
-            />
-            <p className="portfolio-div__examples_description">
-              Pelletier Construction
+              Next Wave Dev
             </p>
           </div>
         </div>

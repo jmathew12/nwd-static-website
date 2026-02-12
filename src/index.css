@@ -787,11 +787,24 @@ svg {
    STUDENT PREVIEW SECTION FIX
 ====================================================== */
 @media (max-width: 800px) {
-
   .student-prev {
-    height: auto;               /* removes fixed 55vh */
-    padding: 2.5rem 1rem;
-    flex-direction: column-reverse;
+    height: auto;               
+    min-height: auto;
+    padding: 3.5rem 1.5rem;      
+    flex-direction: column;      
+    gap: 2rem;                   
+    align-items: center;
+    text-align: center;
+  }
+
+  .student-prev img {
+    max-width: 180px;            
+    height: auto;
+  }
+
+  .student-prev h2,
+  .student-prev h3 {
+    font-size: 1.6rem;
   }
 }
 

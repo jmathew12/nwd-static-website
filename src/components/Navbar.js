@@ -1,82 +1,137 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NWDLogo from '../images/NextWaveDevLogo/NextWaveDev_FINAL_SMALL.jpg';
+import NWDLogo from "../images/NextWaveDevLogo/NextWaveDev_FINAL_SMALL.jpg";
 import { WhiteSpacing } from "./microComponents/navbar/whiteSpacing";
 import { Item } from "./microComponents/navbar/item";
 
 const Navbar = () => {
-  // Collapse state for small widths
-  const [isCollapsed, setIsCollapsed] = React.useState(window.innerWidth <= 800);
-  // Dropdown state for Join Us menu
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
 
   React.useEffect(() => {
     const handleResize = () => {
-      setIsCollapsed(window.innerWidth <= 800);
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (!mobile) {
+        setMenuOpen(false);
+        setIsDropdownOpen(false);
+      }
     };
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const closeMenus = () => {
+    setMenuOpen(false);
+    setIsDropdownOpen(false);
+  };
+
   return (
-    <div
+    <nav
       className="navbar"
       style={{
         display: "flex",
-        flexDirection: isCollapsed ? "column" : "row",
-        alignItems: "center",
-        justifyContent: isCollapsed ? "center" : "flex-start", // left-aligned on desktop
-        gap: isCollapsed ? "0.5rem" : "1rem",
-        height: isCollapsed ? "auto" : "95px",
+        flexDirection: "column",
         backgroundColor: "#004da8",
-        padding: "0.5rem 1rem",
+        padding: "0.75rem 1rem",
+        position: "relative",
       }}
     >
-      <Link to={"/"}>
-        <img
-          src={NWDLogo}
-          alt="Next Wave Dev Logo"
-          style={{
-            width: "4rem",
-            height: "4rem",
-            marginBottom: isCollapsed ? "0.5rem" : "0",
-            marginRight: isCollapsed ? "0" : ".5rem",
-          }}
-        />
-      </Link>
+      {/* Top row: Logo + Hamburger */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
+        <Link to="/" onClick={closeMenus}>
+          <img
+            src={NWDLogo}
+            alt="Next Wave Dev Logo"
+            style={{ width: "4rem", height: "4rem" }}
+          />
+        </Link>
 
-      <Item name={"Contact"} />
-      <WhiteSpacing />
-      <Item name={"About"} />
-      <WhiteSpacing />
-      <Item name={"Developers"} />
-      <WhiteSpacing />
-      <Item name={"Portfolio"} />
-      <WhiteSpacing />
-      <div className="nav-dropdown">
-        <span
-          className="nav-dropdown-toggle"
-          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        >
-          Join Us
-        </span>
-        {isDropdownOpen && (
-          <div className="nav-dropdown-menu">
-            <Link to="/Graduates" className="nav-dropdown-item" onClick={() => setIsDropdownOpen(false)}>
-              Graduates
-            </Link>
-            <Link to="/Companies" className="nav-dropdown-item" onClick={() => setIsDropdownOpen(false)}>
-              Companies
-            </Link>
-          </div>
+        {isMobile && (
+          <button
+            aria-label="Toggle navigation menu"
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{
+              fontSize: "1.75rem",
+              background: "none",
+              border: "none",
+              color: "#fff",
+              cursor: "pointer",
+            }}
+          >
+            ☰
+          </button>
         )}
       </div>
-      <WhiteSpacing />
-      <Item name="Shop" to="https://bonfire.com/store/next-wave-dev-store/" external />
-      <WhiteSpacing />
-      <Item name={"Donation"} />
-      
-    </div>
+
+      {/* Navigation items */}
+      {(!isMobile || menuOpen) && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            alignItems: isMobile ? "flex-start" : "center",
+            gap: "0.75rem",
+            marginTop: isMobile ? "0.75rem" : "0",
+          }}
+        >
+          <Item name="Contact" onClick={closeMenus} />
+          <WhiteSpacing />
+          <Item name="About" onClick={closeMenus} />
+          <WhiteSpacing />
+          <Item name="Developers" onClick={closeMenus} />
+          <WhiteSpacing />
+          <Item name="Portfolio" onClick={closeMenus} />
+          <WhiteSpacing />
+
+          {/* Join Us dropdown */}
+          <div className="nav-dropdown">
+            <span
+              className="nav-dropdown-toggle"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              style={{ cursor: "pointer", color: "#fff" }}
+            >
+              Join Us ▸
+            </span>
+
+            {isDropdownOpen && (
+              <div
+                className="nav-dropdown-menu"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "0.5rem",
+                }}
+              >
+                <Link to="/Graduates" onClick={closeMenus}>
+                  Graduates
+                </Link>
+                <Link to="/Companies" onClick={closeMenus}>
+                  Companies
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <WhiteSpacing />
+          <Item
+            name="Shop"
+            to="https://bonfire.com/store/next-wave-dev-store/"
+            external
+            onClick={closeMenus}
+          />
+        </div>
+      )}
+    </nav>
   );
 };
 

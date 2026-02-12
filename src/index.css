@@ -670,10 +670,9 @@ navbar
   }
 }
 
-/* ------------------------------
-   GLOBAL RESPONSIVE BREAKPOINTS
-   (Add these at the bottom only)
---------------------------------*/
+/* ======================================================
+   GLOBAL RESPONSIVE FIXES (Add at VERY bottom of file)
+====================================================== */
 
 /* Prevent horizontal scrolling */
 html,
@@ -681,29 +680,29 @@ body {
   overflow-x: hidden;
 }
 
-/* Global responsive media */
+/* Make all media responsive */
 img,
 video,
 svg {
   max-width: 100%;
   height: auto;
-}
-
-img,
-video {
   display: block;
+  object-fit: contain;
 }
 
-/* ==============================
+/* ======================================================
    SMALL PHONES (≤480px)
-================================*/
+====================================================== */
 @media (max-width: 480px) {
+
   .navbar,
   .footer,
   .container,
-  .content-wrapper {
+  .content-wrapper,
+  .page-content,
+  .main-content {
+    width: 100% !important;
     padding: 1rem;
-    width: 100%;
   }
 
   .navbar {
@@ -718,32 +717,19 @@ video {
     flex-direction: column !important;
     text-align: center !important;
   }
-
-  .page-content,
-  .main-content {
-    width: 100% !important;
-  }
 }
 
-/* ==============================
+/* ======================================================
    TABLETS (481px–1024px)
-================================*/
+====================================================== */
 @media (min-width: 481px) and (max-width: 1024px) {
+
   .navbar,
   .footer,
   .container,
   .content-wrapper {
-    padding: 1.5rem 2rem;
     width: 100%;
-  }
-
-  .navbar {
-    gap: 1rem;
-  }
-
-  .footer-container {
-    flex-wrap: wrap;
-    justify-content: space-between;
+    padding: 1.5rem 2rem;
   }
 
   .page-content,
@@ -751,12 +737,18 @@ video {
     width: 90% !important;
     margin: 0 auto;
   }
+
+  .footer-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }
 
-/* ==============================
-   DESKTOPS (≥1025px)
-================================*/
+/* ======================================================
+   DESKTOP (≥1025px)
+====================================================== */
 @media (min-width: 1025px) {
+
   .container,
   .content-wrapper,
   .page-content,
@@ -766,10 +758,11 @@ video {
   }
 }
 
-/* ==============================
-   PORTFOLIO RESPONSIVE FIX
-================================*/
+/* ======================================================
+   PORTFOLIO FIX (Prevent cut-off)
+====================================================== */
 @media (max-width: 1150px) {
+
   .portfolio-div {
     flex-direction: column;
     height: auto;
@@ -778,39 +771,35 @@ video {
     padding: 2rem 1rem;
   }
 
-  .portfolio-div__flexcol__heading {
-    font-size: 2.2rem;
-  }
-
   .portfolio-div__examples {
     width: 100%;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 1.5rem;
   }
 
   .portfolio-div__examples__photo {
     max-width: 350px;
-    height: auto;
   }
 }
 
-/* ==============================
-   IMPORTANT VISIBLE FIX
-   Student Preview Section
-================================*/
+/* ======================================================
+   STUDENT PREVIEW SECTION FIX
+====================================================== */
 @media (max-width: 800px) {
+
   .student-prev {
-    height: auto;          /* removes fixed 55vh */
-    padding: 2.5rem 1rem;  /* adds breathing room */
+    height: auto;               /* removes fixed 55vh */
+    padding: 2.5rem 1rem;
     flex-direction: column-reverse;
   }
 }
 
-/* ==============================
-   DEVELOPERS PAGE (iPhone SE)
-================================*/
+/* ======================================================
+   DEVELOPERS PAGE (Small Phones)
+====================================================== */
 @media (max-width: 375px) {
+
   .students-flexcolumn__h1 {
     font-size: 2rem;
     width: auto;
@@ -829,56 +818,42 @@ video {
   }
 
   .students-flexcolumn__student-flex-item__info-div a {
-    word-break: break-all;
+    word-break: break-word;
   }
 }
 
-/* ==============================
-   DONATION / CONTACT RESPONSIVE
-================================*/
-@media (min-width: 900px) {
-  .col-sm-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
-  .ps-sm-2 {
-    padding-left: 2rem;
-  }
-
-  .ps-sm-5 {
-    padding-left: 5rem;
-  }
-}
-
+/* ======================================================
+   DONATION / CONTACT FIX
+====================================================== */
 @media (max-width: 900px) {
+
   #contact-page-map {
     margin-top: 5rem;
     width: 100% !important;
   }
 
-  .xs-center {
-    text-align: center;
-  }
-
   .flex-xs-center {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
   }
+
+  .xs-center {
+    text-align: center;
+  }
 }
 
-/* Buttons & shadows */
+/* Buttons */
 .donation-button {
   cursor: pointer;
 }
 
 .donation-button:active {
-  transition: all 0.125s ease-in-out;
+  transition: 0.125s ease-in-out;
   background-color: rgb(209, 240, 196) !important;
 }
 
+/* Utility shadow */
 .shadow {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }

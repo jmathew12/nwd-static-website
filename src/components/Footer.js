@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FooterLink } from "./microComponents/footer/footerLink";
 import { Separator } from "./microComponents/footer/separator";
 import NEXTWAVEDEV from "../images/NextWaveDevLogo/NextWaveDev_FINAL_SMALL.jpg";
-import CANDID_SEAL from "../images/candid-transparency-logo.svg";
+import CANDID_SEAL from "../images/candid-transparency-logo.png";
 import LINKEDIN_ICON from "../images/linkedin_logo.png";
 
 const Footer = () => {
@@ -74,6 +74,24 @@ const Footer = () => {
             <li style={{ ...footerList }}>nextwavedev.org@gmail.com</li>
           </Link>
         </ul>
+
+        <ul style={{ ...footerList }}>
+          <h4 style={{ ...footerCategory }}>Join Us</h4>
+          <Separator />
+          <ul
+            style={{
+              ...footerList,
+              display: "flex",
+              flexDirection: "row",
+              gap: "1rem",
+              flexWrap: "wrap",
+              justifyContent: "flex-start"
+            }}
+          >
+            <li><FooterLink name="Graduates" to="/graduates" /></li>
+            <li><FooterLink name="Companies" to="/companies" /></li>
+          </ul>
+        </ul>
       </div>
 
       <div
@@ -107,7 +125,7 @@ const Footer = () => {
         >
           <img
             src={CANDID_SEAL}
-            alt="Candid Seal of Transparency"
+            alt="Candid Silver Seal of Transparency"
             style={{
               height: "64px",
               width: "auto",

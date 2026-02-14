@@ -7,7 +7,7 @@ function ContactThankYou() {
   useEffect(() => {
     if (window.gtag) {
       window.gtag('event', 'conversion', {
-        send_to: 'AW-17737966605/Pv75CKfJ8sYbEI3Ij4pC',
+        send_to: 'AW-17737966605/ejt6CPmN-PYbEI3Ij4pC',
         value: 1.0,
         currency: 'USD'
       });

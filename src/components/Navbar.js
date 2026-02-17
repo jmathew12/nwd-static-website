@@ -53,6 +53,8 @@ const Navbar = () => {
       <WhiteSpacing />
       <Item name={"Portfolio"} />
       <WhiteSpacing />
+      <Item name={"Services"} />
+      <WhiteSpacing />
       <div className="nav-dropdown">
         <span
           className="nav-dropdown-toggle"

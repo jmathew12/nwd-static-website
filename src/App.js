@@ -9,6 +9,7 @@ import PortfolioPage from './pages/PortfolioPage'
 import DevelopersPage from './pages/DevelopersPage'
 import GraduatesPage from './pages/GraduatesPage'
 import CompaniesPage from './pages/CompaniesPage'
+import ApplyPage from "./pages/ApplyPage";
 import Donation from './pages/Donation';
 
 // Pageview tracker component
@@ -52,6 +53,7 @@ function App() {
         <Route path='/graduates' element={<GraduatesPage />} />
         <Route path='/companies' element={<CompaniesPage />} />
         <Route path='/Donation' element={<Donation />} />
+        <Route path="/apply" element={<ApplyPage />} />
         <Route path='/Donate' element={<Donation />} />
       </Routes>
     </Router>

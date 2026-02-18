@@ -60,6 +60,7 @@ const Footer = () => {
             >
               Shop
             </a>
+            <li><FooterLink name="Donate" /></li>
           </ul>
         </ul>
 

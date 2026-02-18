@@ -43,15 +43,16 @@ function App() {
 
       <Routes>
         <Route exact path="/" element={<Navigate to="/Home" />} />
-        <Route path="/Home" element={<Main />} />
-        <Route path="/Contact" element={<Contact />} />
-        <Route path="/Contact-Thank-You" element={<ContactThankYou />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Portfolio" element={<PortfolioPage />} />
-        <Route path="/Developers" element={<DevelopersPage />} />
-        <Route path="/graduates" element={<GraduatesPage />} />
-        <Route path="/companies" element={<CompaniesPage />} />
-        <Route path="/Donation" element={<Donation />} />
+        <Route path='/Home' element={<Main />} />
+        <Route path='/Contact' element={<Contact />} />
+        <Route path='/Contact-Thank-You' element={<ContactThankYou />} />
+        <Route path='/About' element={<About />} />
+        <Route path='/Portfolio' element={<PortfolioPage />} />
+        <Route path='/Developers' element={<DevelopersPage />} />
+        <Route path='/graduates' element={<GraduatesPage />} />
+        <Route path='/companies' element={<CompaniesPage />} />
+        <Route path='/Donation' element={<Donation />} />
+        <Route path='/Donate' element={<Donation />} />
       </Routes>
     </Router>
   );

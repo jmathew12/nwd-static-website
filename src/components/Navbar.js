@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NWDLogo from "../images/NextWaveDevLogo/NextWaveDev_FINAL_SMALL.jpg";
 import { WhiteSpacing } from "./microComponents/navbar/whiteSpacing";
 import { Item } from "./microComponents/navbar/item";
 
 const Navbar = () => {
-  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
@@ -39,16 +39,15 @@ const Navbar = () => {
         position: "relative",
       }}
     >
-      {/* Top row: Logo + Hamburger */}
+      {/* Top Row */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          width: "100%",
         }}
       >
-        <Link to="/" onClick={closeMenus}>
+        <Link to="/">
           <img
             src={NWDLogo}
             alt="Next Wave Dev Logo"
@@ -61,10 +60,10 @@ const Navbar = () => {
             aria-label="Toggle navigation menu"
             onClick={() => setMenuOpen(!menuOpen)}
             style={{
-              fontSize: "1.75rem",
+              fontSize: "2rem",
               background: "none",
               border: "none",
-              color: "#fff",
+              color: "white",
               cursor: "pointer",
             }}
           >
@@ -73,49 +72,55 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Navigation items */}
+      {/* Navigation Items */}
       {(!isMobile || menuOpen) && (
         <div
           style={{
             display: "flex",
             flexDirection: isMobile ? "column" : "row",
             alignItems: isMobile ? "flex-start" : "center",
-            gap: "0.75rem",
-            marginTop: isMobile ? "0.75rem" : "0",
+            gap: "1rem",
+            marginTop: "0.5rem",
           }}
         >
-          <Item name="Contact" onClick={closeMenus} />
+          <Item name="Contact" />
           <WhiteSpacing />
-          <Item name="About" onClick={closeMenus} />
+          <Item name="About" />
           <WhiteSpacing />
-          <Item name="Developers" onClick={closeMenus} />
+          <Item name="Developers" />
           <WhiteSpacing />
-          <Item name="Portfolio" onClick={closeMenus} />
+          <Item name="Portfolio" />
           <WhiteSpacing />
 
-          {/* Join Us dropdown */}
           <div className="nav-dropdown">
             <span
               className="nav-dropdown-toggle"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              style={{ cursor: "pointer", color: "#fff" }}
+              style={{ cursor: "pointer", color: "white" }}
             >
-              Join Us ▸
+              Join Us
             </span>
 
             {isDropdownOpen && (
-              <div
-                className="nav-dropdown-menu"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  marginTop: "0.5rem",
-                }}
-              >
-                <Link to="/Graduates" onClick={closeMenus}>
+              <div className="nav-dropdown-menu">
+                <Link
+                  to="/Graduates"
+                  className="nav-dropdown-item"
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    setMenuOpen(false);
+                  }}
+                >
                   Graduates
                 </Link>
-                <Link to="/Companies" onClick={closeMenus}>
+                <Link
+                  to="/Companies"
+                  className="nav-dropdown-item"
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    setMenuOpen(false);
+                  }}
+                >
                   Companies
                 </Link>
               </div>
@@ -127,7 +132,6 @@ const Navbar = () => {
             name="Shop"
             to="https://bonfire.com/store/next-wave-dev-store/"
             external
-            onClick={closeMenus}
           />
         </div>
       )}

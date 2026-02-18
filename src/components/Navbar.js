@@ -23,6 +23,11 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const closeMenus = () => {
+    setMenuOpen(false);
+    setIsDropdownOpen(false);
+  };
+
   return (
     <nav
       className="navbar"
@@ -30,7 +35,8 @@ const Navbar = () => {
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#004da8",
-        padding: "0.5rem 1rem",
+        padding: "0.75rem 1rem",
+        position: "relative",
       }}
     >
       {/* Top Row */}

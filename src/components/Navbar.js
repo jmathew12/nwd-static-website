@@ -47,7 +47,7 @@ const Navbar = () => {
           justifyContent: "space-between",
         }}
       >
-        <Link to="/">
+        <Link to="/" onClick={closeMenus}>
           <img
             src={NWDLogo}
             alt="Next Wave Dev Logo"
@@ -83,15 +83,20 @@ const Navbar = () => {
             marginTop: "0.5rem",
           }}
         >
-          <Item name="Contact" />
+          <Item name="Contact" onClick={closeMenus} />
           <WhiteSpacing />
-          <Item name="About" />
+          <Item name="About" onClick={closeMenus} />
           <WhiteSpacing />
-          <Item name="Developers" />
+          <Item name="Developers" onClick={closeMenus} />
           <WhiteSpacing />
-          <Item name="Portfolio" />
+          <Item name="Portfolio" onClick={closeMenus} />
           <WhiteSpacing />
 
+          {/* ✅ Added Pricing */}
+          <Item name="Pricing" onClick={closeMenus} />
+          <WhiteSpacing />
+
+          {/* Join Us Dropdown */}
           <div className="nav-dropdown">
             <span
               className="nav-dropdown-toggle"
@@ -106,20 +111,14 @@ const Navbar = () => {
                 <Link
                   to="/Graduates"
                   className="nav-dropdown-item"
-                  onClick={() => {
-                    setIsDropdownOpen(false);
-                    setMenuOpen(false);
-                  }}
+                  onClick={closeMenus}
                 >
                   Graduates
                 </Link>
                 <Link
                   to="/Companies"
                   className="nav-dropdown-item"
-                  onClick={() => {
-                    setIsDropdownOpen(false);
-                    setMenuOpen(false);
-                  }}
+                  onClick={closeMenus}
                 >
                   Companies
                 </Link>

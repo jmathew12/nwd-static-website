@@ -10,7 +10,7 @@ import DevelopersPage from './pages/DevelopersPage'
 import GraduatesPage from './pages/GraduatesPage'
 import CompaniesPage from './pages/CompaniesPage'
 import Donation from './pages/Donation';
-
+import PricingPage from "./pages/PricingPage";
 // Pageview tracker component
 function PageTracker() {
   const location = useLocation();
@@ -53,6 +53,7 @@ function App() {
         <Route path='/companies' element={<CompaniesPage />} />
         <Route path='/Donation' element={<Donation />} />
         <Route path='/Donate' element={<Donation />} />
+        <Route path="/pricing" element={<PricingPage />} />
       </Routes>
     </Router>
   );

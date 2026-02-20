@@ -44,6 +44,16 @@
           "email": "johnff0609@gmail.com",
           "github": "https://github.com/johnff9",
           "linkedin": "https:///www.linkedin.com/in/john-farnandez"
+        },
+        {
+          "name": "Luwam Habtu",
+          "photo": "luwam-habtu.webp",
+          "role": "Developer",
+          "about": "Passionate about full-stack development, cloud computing, and building scalable web applications.",
+          "email": "luwamhabtu07@gmail.com",
+          "github": "https://github.com/luwamhabtu07",
+          "linkedin": "https://www.linkedin.com/in/luwam-habtu-803915300"
         }
+
     ]
 }

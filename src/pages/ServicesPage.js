@@ -1,9 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function ServicesPage() {
   return (
-    <div style={{ padding: "60px 40px", maxWidth: "1200px", margin: "0 auto" }}>
+    <>
+      <Navbar />
+  
+      <div style={{ padding: "60px 40px", maxWidth: "1200px", margin: "0 auto" }}>
 
       <Helmet>
         <title>Services | Next Wave Dev</title>
@@ -128,6 +133,9 @@ function ServicesPage() {
       </a>
 
     </div>
+
+    <Footer />
+  </>
   );
 }
 

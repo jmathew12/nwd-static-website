@@ -1,15 +1,17 @@
 import { HashRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import ReactGA from "react-ga4";
-import Main from './pages/Main'
-import Contact from './pages/Contact'
+
+import Main from './pages/Main';
+import Contact from './pages/Contact';
 import ContactThankYou from './pages/ContactThankYou';
-import About from './pages/About'
-import PortfolioPage from './pages/PortfolioPage'
-import DevelopersPage from './pages/DevelopersPage'
-import GraduatesPage from './pages/GraduatesPage'
-import CompaniesPage from './pages/CompaniesPage'
+import About from './pages/About';
+import PortfolioPage from './pages/PortfolioPage';
+import DevelopersPage from './pages/DevelopersPage';
+import GraduatesPage from './pages/GraduatesPage';
+import CompaniesPage from './pages/CompaniesPage';
 import Donation from './pages/Donation';
+import ServicesPage from './pages/ServicesPage';
 
 // Pageview tracker component
 function PageTracker() {
@@ -42,17 +44,18 @@ function App() {
       <PageTracker />
 
       <Routes>
-        <Route exact path="/" element={<Navigate to="/Home" />} />
-        <Route path='/Home' element={<Main />} />
-        <Route path='/Contact' element={<Contact />} />
-        <Route path='/Contact-Thank-You' element={<ContactThankYou />} />
-        <Route path='/About' element={<About />} />
-        <Route path='/Portfolio' element={<PortfolioPage />} />
-        <Route path='/Developers' element={<DevelopersPage />} />
-        <Route path='/graduates' element={<GraduatesPage />} />
-        <Route path='/companies' element={<CompaniesPage />} />
-        <Route path='/Donation' element={<Donation />} />
-        <Route path='/Donate' element={<Donation />} />
+        <Route path="/" element={<Navigate to="/Home" />} />
+        <Route path="/Home" element={<Main />} />
+        <Route path="/Contact" element={<Contact />} />
+        <Route path="/Contact-Thank-You" element={<ContactThankYou />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/Portfolio" element={<PortfolioPage />} />
+        <Route path="/Developers" element={<DevelopersPage />} />
+        <Route path="/graduates" element={<GraduatesPage />} />
+        <Route path="/companies" element={<CompaniesPage />} />
+        <Route path="/Donation" element={<Donation />} />
+        <Route path="/Donate" element={<Donation />} />
+        <Route path="/Services" element={<ServicesPage />} />
       </Routes>
     </Router>
   );

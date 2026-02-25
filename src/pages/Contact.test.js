@@ -2,26 +2,23 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import Contact from "./Contact";
-import React from "react";
 import "@testing-library/jest-dom";
+import React from "react";
 
-// Mock Navbar and Footer (not needed for logic testing)
 jest.mock("../components/Navbar", () => () => <div>Navbar</div>);
 jest.mock("../components/Footer", () => () => <div>Footer</div>);
 
-// Mock useNavigate
 const mockedNavigate = jest.fn();
+
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: () => mockedNavigate,
 }));
 
-// Mock fetch to prevent real network request
 beforeEach(() => {
   global.fetch = jest.fn(() =>
     Promise.resolve({
       ok: true,
-      json: () => Promise.resolve({}),
     })
   );
 
@@ -29,28 +26,33 @@ beforeEach(() => {
 });
 
 describe("Contact Page Integration Tests", () => {
-  test("Happy Path: Form submits successfully when all fields are filled", async () => {
-    const user = userEvent.setup();
-
+  test("Happy Path: submits when fields are filled", async () => {
     render(
       <MemoryRouter>
         <Contact />
       </MemoryRouter>
     );
 
-    await user.type(screen.getByLabelText(/name/i), "Beimnet");
-    await user.type(screen.getByLabelText(/email/i), "test@test.com");
-    await user.type(
-      screen.getByLabelText(/message/i),
-      "Hello this is a test message"
+    // Select inputs by name attribute (stable and safe)
+    const nameInput = document.querySelector(
+      'input[name="entry.2005620554"]'
+    );
+    const emailInput = document.querySelector(
+      'input[name="emailAddress"]'
+    );
+    const messageInput = document.querySelector(
+      'textarea[name="entry.839337160"]'
     );
 
-    await user.click(screen.getByRole("button", { name: /submit/i }));
+    await userEvent.type(nameInput, "Beimnet");
+    await userEvent.type(emailInput, "test@test.com");
+    await userEvent.type(messageInput, "Hello test message");
 
-    // Ensure fetch was called
+    await userEvent.click(
+      screen.getByRole("button", { name: /submit/i })
+    );
+
     expect(global.fetch).toHaveBeenCalled();
-
-    // Ensure navigation happened
     expect(mockedNavigate).toHaveBeenCalledWith("/contact-thank-you");
   });
 });

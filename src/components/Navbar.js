@@ -30,7 +30,8 @@ const Navbar = () => {
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#004da8",
-        padding: "0.5rem 1rem",
+        padding: "0.75rem 1rem",
+        position: "relative",
       }}
     >
       {/* Top Row */}
@@ -41,7 +42,7 @@ const Navbar = () => {
           justifyContent: "space-between",
         }}
       >
-        <Link to="/">
+        <Link to="/Home">
           <img
             src={NWDLogo}
             alt="Next Wave Dev Logo"
@@ -85,6 +86,8 @@ const Navbar = () => {
           <WhiteSpacing />
           <Item name="Portfolio" />
           <WhiteSpacing />
+          <Item name="Services" />
+          <WhiteSpacing />
 
           <div className="nav-dropdown">
             <span
@@ -100,10 +103,7 @@ const Navbar = () => {
                 <Link
                   to="/Graduates"
                   className="nav-dropdown-item"
-                  onClick={() => {
-                    setIsDropdownOpen(false);
-                    setMenuOpen(false);
-                  }}
+                  onClick={() => setIsDropdownOpen(false)}
                 >
                   Graduates
                 </Link>
@@ -120,10 +120,7 @@ const Navbar = () => {
                 <Link
                   to="/Companies"
                   className="nav-dropdown-item"
-                  onClick={() => {
-                    setIsDropdownOpen(false);
-                    setMenuOpen(false);
-                  }}
+                  onClick={() => setIsDropdownOpen(false)}
                 >
                   Companies
                 </Link>
@@ -137,6 +134,8 @@ const Navbar = () => {
             to="https://bonfire.com/store/next-wave-dev-store/"
             external
           />
+          <WhiteSpacing />
+          <Item name="Donation" />
         </div>
       )}
     </nav>

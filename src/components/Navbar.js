@@ -125,7 +125,11 @@ const Navbar = () => {
             external
           />
           <WhiteSpacing />
-          <Item name="Donation" />
+          <Item 
+            name="Donate" 
+            to="https://nextwavedev.org/#/Donate"
+            external
+          />
         </div>
       )}
     </nav>

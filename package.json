@@ -2,6 +2,11 @@
   "name": "practicum-site",
   "version": "0.1.0",
   "private": true,
+  "icons": {
+    "src": "favicon.ico",
+    "sizes": "64x64 32x32 24x24 16x16",
+    "type": "image/x-icon"
+  },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",

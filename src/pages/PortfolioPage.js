@@ -158,7 +158,7 @@ const PortfolioPage = () => {
                 color: "#858585",
               }}
             >
-              Since 2023 we have built a portfolio of student made products...
+              Since 2025, we have built a portfolio of products made by graduates...
             </div>
           </div>
 

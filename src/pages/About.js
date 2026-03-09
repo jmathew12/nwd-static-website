@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
-import NWD_about_photo from "../images/about/NWD_about_photo.png";
+import NWD_about_photo from "../images/about/New_NWD_about_photo.png";
 
 function About() {
   return (
@@ -74,6 +74,17 @@ function About() {
                 </p>
             </div>
         
+        <img
+          src={NWD_about_photo}
+          alt="Picture of NWD"
+          className="about-page-image"
+          style={{
+            width: "100%",
+            display: "block",
+            height: "80vh",
+            objectFit: "fill",
+          }}
+        />
         
       <Footer />
     </>
